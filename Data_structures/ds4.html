@@ -3,8 +3,16 @@
   <script src="ds4.js"></script>
 </head>
 <body>
-  Enter initial balance <input type="text" id="userInput"></input><br>
-  <button onclick="start()">Start</button>
+  Enter initial balance <input type="text" id="cash" onchange="start()"></input><br><br>
+  <button onclick="start()">Set</button>
+  <p>
+  <fieldset>
+    <legend>Type of Transaction:</legend>
+    <input type="radio" name="type" id="withdraw" ></input>Withdraw<br>
+    <input type="radio" name="type" id="deposit" value="true"></input>Deposit<br><br>
+    Enter amount <input type="text" id="amount"></input><br><br>
+    <input type="submit" onclick="transact()" value="Transact">
+  </fieldset>
 </body>
 
 </html>

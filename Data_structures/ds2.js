@@ -3,39 +3,40 @@ var value = process.argv[2];
 var fname = "text1.txt";
 var str = "";
 var l1 = new list();
-function compare(a, b){return b-a}
 
-fs.readFile(fname, function(err, data) {  //reading from file
+function compare(a, b) {
+  return b - a
+}
+//reading from file
+fs.readFile(fname, function(err, data) {
   if (err) {
     console.log(err);
   }
-  // console.log("data :"+data);
-  str+=data;
-  str=str.trim().split(",");
-  str=str.sort(compare);
-  //console.log(typeof str);
-  //console.log("after sort: "+str.split(",").sort());
-  // console.log("str : "+str);
-  for(var i=0;i<str.length;i++){
-    // console.log("Adding "+str[i]+"to the list");
+
+  str += data;
+  str = str.trim().split(",");
+  str = str.sort(compare);
+
+  for (var i = 0; i < str.length; i++) {
+
     l1.add(str[i]);
-    // console.log("List :");
-    //  l1.print();
+
   }
-  // console.log("final list");
+
   l1.print();
   l1.remove(value);
   l1.print();
-  // console.log("head data "+l1.head.data);
-  //   console.log("end data "+l1.end.data);
-  var ptr=l1.head;str=[];
-  for(i=0;i<l1.number;i++){
+
+  var ptr = l1.head;
+  str = [];
+  for (i = 0; i < l1.number; i++) {
     str.push(ptr.data);
-    ptr=ptr.next;
+    ptr = ptr.next;
   }
-  str=str.join(",");
+  str = str.join(",");
   console.log("writing to file");
-  fs.writeFile(fname,str,function(err){   //writing into file
+  //writing into file
+  fs.writeFile(fname, str, function(err) {
     if (err) {
       console.log(err);
     }
@@ -43,13 +44,13 @@ fs.readFile(fname, function(err, data) {  //reading from file
 
 });
 
-// l1.print();
+// list node structure
 function node(data, next) {
-  this.data = data; // list node structure
+  this.data = data;
   this.next = null;
 };
-
-function list() { //linked list structure
+//linked list structure
+function list() {
 
   this.head = null;
   this.end = null;
@@ -59,36 +60,36 @@ function list() { //linked list structure
 //for adding node to the list
 list.prototype.add = function(data) {
   var node1 = new node(data, null);
-  var ptr=this.head;
+  var ptr = this.head;
   if (this.head == null) {
-    // console.log("adding for first time");        //no nodes are present before
+    //no nodes are present before
     this.head = node1;
     this.end = node1;
-    this.number++;             //increment the nummber of nodes
+    //increment the nummber of nodes
+    this.number++;
     return;
-  }
-   else {
-     if(compare(this.head.data,node1.data)){
+  } else {
+    if (compare(this.head.data, node1.data)) {
       //inserting at beginning
-       node1.next=this.head;
-       this.head=node1;
-       this.number++;             //increment the nummber of nodes
-       return;
-     }
-    while(ptr.next!=null){         //searching apt position
-      if(compare(ptr.next.data,node1.data)){
-        // console.log("in else loop"+ptr.data+" "+data);
-        node1.next=ptr.next;
-        ptr.next=node1;
-        this.number++;           //increment the nummber of nodes
+      node1.next = this.head;
+      this.head = node1;
+      this.number++;
+      return;
+    }
+    //searching apt position
+    while (ptr.next != null) {
+      if (compare(ptr.next.data, node1.data)) {
+        node1.next = ptr.next;
+        ptr.next = node1;
+        this.number++;
         return;
       }
-      ptr=ptr.next;
+      ptr = ptr.next;
     }
-    // console.log("out of loop"+ptr.data+" "+data);
-    this.end.next = node1; // inserting at last at last
+    // inserting at last at last
+    this.end.next = node1;
     this.end = node1;
-    this.number++;           //increment the nummber of nodes
+    this.number++;
     return;
   }
 
@@ -97,32 +98,35 @@ list.prototype.add = function(data) {
 list.prototype.remove = function(item) {
   var ptr;
   ptr = this.head;
-
-  if (ptr.data == item) { //value at beginning of list
+  //value at beginning of list
+  if (ptr.data == item) {
     this.head = ptr.next;
     this.number--;
     return;
-    }
+  }
   while (ptr.next != null) {
     if (ptr.next.data == item) {
-      if (ptr.next.next == null) { // present at the last
+      // present at the last
+      if (ptr.next.next == null) {
         this.end = ptr;
         ptr.next = null;
         this.number--;
         return;
       }
+      // other cases
       else {
-          ptr.next = ptr.next.next; // other cases
-          this.number--;
-          return;
-        }
-  }
-    ptr = ptr.next; //traverse untill item is found or you reach at the last of the list
+        ptr.next = ptr.next.next;
+        this.number--;
+        return;
+      }
+    }
+    //traverse untill item is found or you reach at the last of the list
+    ptr = ptr.next;
   }
 
-    console.log("data not found");
-    this.add(item);
-    console.log("added to list");
+  console.log("data not found");
+  this.add(item);
+  console.log("added to list");
 
 };
 //for printing the list

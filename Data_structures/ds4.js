@@ -2,6 +2,7 @@ var q=new Queue();
 var cash=0;
 
 
+
 function Queue()
 {
  this.q=new Array();
@@ -25,7 +26,21 @@ function Queue()
 }
 
 function start(){
-  cash=document.getElementById("userInput").value;
+  cash=parseInt(document.getElementById("cash").value);
+}
+//function to transact
+function transact(){
 
+  amt=parseInt(document.getElementById("amount").value);
 
+  q.enq(amt);
+
+  if(document.getElementById("withdraw").checked==true){
+    cash=cash-amt;
+  }
+  if(document.getElementById("deposit").checked==true){
+      cash=cash+amt;
+  }
+  q.deq(amt);
+  alert("Remaining cash balance is Rs."+cash);
 }
