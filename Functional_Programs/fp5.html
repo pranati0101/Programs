@@ -1,0 +1,22 @@
+<html>
+
+<body>
+  <input type="text" id="userInput">Enter the value of N.</input><br>
+  <button onclick="test()">Submit</button>
+  <script>
+    function test() {
+      var hn = 0;
+      var n = document.getElementById("userInput").value;
+      if (n == 0) {
+        window.alert("Enter number greater than zero.");
+      }
+      for (i = 1; i <= n; i++) {
+        hn = hn + (1 / i);
+      }
+      document.write(hn);
+
+    }
+  </script>
+</body>
+
+</html>
