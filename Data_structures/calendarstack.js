@@ -14,7 +14,7 @@ function weekDay(date, day) {
 function node(obj, next) {
   this.obj = obj;
   this.next = null;
-};
+}
 
 //linked list structure
 function list() {
@@ -37,6 +37,21 @@ function list() {
     //increment the nummber of nodes
     this.number++;
   }
+  this.remove = function() {
+    var ptr;
+    ptr = this.head;
+    // removing the last element
+    while(ptr.next.next!=null){
+        ptr = ptr.next;
+    }
+    if (ptr.next.next == null) {
+      var data=ptr.next.obj;
+      this.end = ptr;
+      ptr.next = null;
+      this.number--;
+      return data;
+      }
+  }
 }
 
 //Queue function and methods
@@ -45,8 +60,14 @@ function Stack() {
   this.stack = new list();
   //function to add element
   this.push = function(obj) {
-    this.q.add(obj);
+    this.stack.add(obj);
     this.length++;
+  }
+  //function to remove leement
+  this.pop=function(){
+    var data=this.stack.remove();
+    this.length--;
+    return data;
   }
   //function to chk queue is empty
   this.isEmpty = function() {
@@ -56,7 +77,7 @@ function Stack() {
   }
   //function to print
   this.print=function(){
-    this.q.print();
+    this.stack.print();
   }
 }
 
@@ -81,15 +102,15 @@ function createcal() {
   //calculating number of days and month
   calmonth();
 //creating calendar
-  cal = new Queue();
+  cal = new Stack();
   for (j = 0; j < d; ) {
 //creating week
-    week = new Queue();
+    week = new Stack();
     for (i = 0; i <7; ) {
         //storing date and day
       if(date>d){
         weekDayNode = new weekDay("", days[++d0]);
-        week.enq(weekDayNode);
+        week.push(weekDayNode);
         i++;
       }
       else{
@@ -98,7 +119,7 @@ function createcal() {
         //storing space before actual day
         while (i < d0) {
           weekDayNode = new weekDay("  ", days[d0]);
-          week.enq(weekDayNode);
+          week.push(weekDayNode);
           i++;
         }
         if(date<10){
@@ -107,28 +128,48 @@ function createcal() {
         else{
           weekDayNode = new weekDay((date++), days[d0]);
         }
-        week.enq(weekDayNode);i++;
+        week.push(weekDayNode);i++;
         j++;
       }
     }
-    cal.enq(week);
+    cal.push(week);
   }
-//printiing cal
-  console.log(mon+" "+y);
-  console.log(" S  M  T  W  Th F  S");
-  var string="";
-  var week = cal.q.head;
-  for(i=0;i<cal.length;i++) {
-  var ptr=(week.obj.q.head);
-  var string=" ";
-  while (ptr) {
-    string += (ptr.obj.date+" ");
-    ptr = ptr.next;
+//printing cal
+var stack2=new Stack();
+for(i=0;i<cal.length;i++){
+  var week=cal.pop();
+  var week2=new Stack();
+  for(k=0;k<week.length;k++){
+    week2.push(week.pop());
+  }
+}
+for(i=0;i<stack2.length;i++){
+  var week=stack2.pop();
+  string="";
+  for(i=0;i<week.length;i++){
+    string+=week.pop()+" ";
   }
   console.log(string);
-  week = week.next;
-  }
-  }
+}
+}
+
+
+//printiing cal
+  // console.log(mon+" "+y);
+  // console.log(" S  M  T  W  Th F  S");
+  // var string="";
+  // var week = cal.stack.head;
+  // for(i=0;i<cal.length;i++) {
+  // var ptr=(week.obj.stack.head);
+  // var string=" ";
+  // while (ptr) {
+  //   string += (ptr.obj.date+" ");
+  //   ptr = ptr.next;
+  // }
+  // console.log(string);
+  // week = week.next;
+  // }
+  // }
 //FUNCTION to cal month and number of days
 function calmonth() {
   switch (m) {

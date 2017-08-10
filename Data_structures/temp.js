@@ -103,15 +103,15 @@ function createcal() {
   //calculating number of days and month
   calmonth();
 //creating calendar
-  cal = new Queue();
+  cal = new Stack();
   for (j = 0; j < d; ) {
 //creating week
-    week = new Queue();
+    week = new Stack();
     for (i = 0; i <7; ) {
         //storing date and day
       if(date>d){
         weekDayNode = new weekDay("", days[++d0]);
-        week.enq(weekDayNode);
+        week.push(weekDayNode);
         i++;
       }
       else{
@@ -129,27 +129,44 @@ function createcal() {
         else{
           weekDayNode = new weekDay((date++), days[d0]);
         }
-        week.enq(weekDayNode);i++;
+        week.push(weekDayNode);i++;
         j++;
       }
     }
-    cal.enq(week);
+    cal.push(week);
   }
 //printiing cal
-  console.log(mon+" "+y);
-  console.log(" S  M  T  W  Th F  S");
-  var string="";
-  var week = cal.q.head;
-  for(i=0;i<cal.length;i++) {
-  var ptr=(week.obj.q.head);
-  var string=" ";
-  while (ptr) {
-    string += (ptr.obj.date+" ");
-    ptr = ptr.next;
-  }
-  console.log(string);
-  week = week.next;
-  }
+console.log(mon+" "+y);
+console.log(" S  M  T  W  Th F  S");
+var string="";
+var week = cal.pop();
+console.log(week);
+// for(i=0;i<cal.length;i++) {
+// var ptr=(week.obj.q.head);
+// var string=" ";
+// while (ptr) {
+//   string += (ptr.obj.date+" ");
+//   ptr = ptr.next;
+// }
+// console.log(string);
+// week = week.next;
+// }
+
+
+  // console.log(mon+" "+y);
+  // console.log(" S  M  T  W  Th F  S");
+  // var string="";
+  // var week = cal.q.head;
+  // for(i=0;i<cal.length;i++) {
+  // var ptr=(week.obj.q.head);
+  // var string=" ";
+  // while (ptr) {
+  //   string += (ptr.obj.date+" ");
+  //   ptr = ptr.next;
+  // }
+  // console.log(string);
+  // week = week.next;
+  // }
   }
 //FUNCTION to cal month and number of days
 function calmonth() {
