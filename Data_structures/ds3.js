@@ -1,9 +1,3 @@
-//var exp=process.argv[2++];
-var exp = "(5+6)∗(7+8)/(4+3)(5+6)∗(7+8)/(4+3)";
-var i = 0;
-check(exp);
-
-
 function Stack()
 {
  this.stac=new Array();
@@ -27,20 +21,27 @@ function Stack()
 }
 
 
-function check(exp) {
+function find(exp) {
+  var i=0;
+  var exp=document.getElementById("exp").value;
   var stk = new Stack();
   while (i != exp.length) {
     if (exp[i] == "(" || exp[i] == "[" || exp[i] == "{") {
       stk.push(exp[i]);
     }
     if (exp[i] == ")" || exp[i] == "]" || exp[i] == "}") {
+      if(stk.isEmpty())
+      {
+        alert("False");
+        return;
+      }
       stk.pop();
     }
     i++;
   }
   if (stk.isEmpty()) {
-    console.log("true");
+    alert("True");
   } else {
-    console.log("false");
+    alert("False");
   }
 }

@@ -1,5 +1,7 @@
+//modulo 10^8+7
 const mod=parseInt(parseInt(Math.pow(10,8))+parseInt(7));
-//mul(num,10);
+var memo=[];
+
 
 //function for multiplying
 function mul(num,x){
@@ -16,6 +18,9 @@ function mul(num,x){
 
 //function for calculating factorial
 function fact(n){
+  if(n in memo){
+    return memo[n];
+  }
   if(n<2)
     return 1;
   var num=[];var res=[1];
@@ -27,7 +32,8 @@ function fact(n){
   for(var i=1;i<=n;i++){
     res=mul(res,i);
   }str=""+res.reverse();
-  return (parseInt(str.split(",").join("")));
+  memo[n]=parseInt(str.split(",").join(""))
+  return memo[n];
 }
 //driver function
 function find(){

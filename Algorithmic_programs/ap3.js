@@ -1,14 +1,12 @@
-var p=[];  //global array to store prime values
-function node(){
-
-}
+//global array to store prime values
+var p=[];
 var arr=[[]];
 //  printing palindromes
   console.log("Prime Palindromes: ");
   for(i=2;i<=1000;i++){
     if(prime(i)===true ){
-      p.push(i);
       if(palindrome(i)==true){
+        p.push(i);
         console.log(i);
       }
     }
@@ -16,10 +14,10 @@ var arr=[[]];
 
 anagram();
 
-
+//function to check prime
 function prime(num){
   if(num==2 || num==3){
-        return true;   //function to check prime
+        return true;
   }
   if(num%2==0 || num%3==0)
     return false;
@@ -33,21 +31,23 @@ function prime(num){
 
 function palindrome(num){
 var arr=new Array();var i=0;
-while(num>0){  //converting number to array
+//converting number to array
+while(num>0){
   arr[i++]=num%10;
   num=num/10;
 }
-if(arr==arr.reverse()){  //chkng palindrome condition
+//chkng palindrome condition
+if(arr==arr.reverse()){
   return true;
 }
 }
 
-
+    //chk anagram
 function anagram(){
-            //chk anagram
-  for(j=0;j<p.length;j++){
+  //extracting element from p[] and sort
+    for(j=0;j<p.length;j++){
     var m=p[j]+"";
-  m=m.split("").sort().join("");
+    m=m.split("").sort().join("");
     arr[j]=m;
   }
   console.log("anagrams: ");
@@ -56,7 +56,7 @@ function anagram(){
     var ana=[];
     for(k=j+1;k<arr.length;k++){
       if(arr[j]===arr[k]){
-        //console.log(p[k]);
+    
         ana.push(p[k]);
       }
     }
