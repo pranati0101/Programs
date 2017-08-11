@@ -37,6 +37,53 @@ function list() {
     //increment the nummber of nodes
     this.number++;
   }
+  //for removing element from end
+
+this.remove = function() {
+  if(this.number==0){
+    return null;
+  }
+  if(this.number==1){
+    var obj=this.head.obj;
+    this.head=null;
+    this.end=null;
+    this.length--;
+    return obj;
+  }
+  var obj=this.head.obj;
+  this.head=this.head.next;
+  this.lebgth--;
+  return obj;
+}
+  // this.remove=function(){
+  // //   var ptr;
+  // //   ptr = this.head;
+  // // if(this.number<2){
+  // //   //only one element present
+  // //   if(this.number==1){
+  // //     var data=this.head.obj;
+  // //   //  console.log("head:  "+this.head);
+  // //     this.head=null;
+  // //     this.end=null;
+  // //     return data;
+  // //   }
+  // //   var data=this.end.obj;
+  // //   this.end=this.head;
+  // //   this.head.next=null;
+  // //   return data;
+  // // }
+  // //   while(ptr.next.next!=null){
+  // //       ptr = ptr.next;
+  // //     //  console.log("ptr: "+ptr+" ptr.next: "+ptr.next+" ptr.next.next: "+ptr.next.next );
+  // //   }
+  // // // removing the last element
+  // //     var data=this.end.obj;
+  // //     this.end = ptr;
+  // //     ptr.next = null;
+  // //     this.number--;
+  // //     return data;
+  // // }
+  // }
 }
 
 //Queue function and methods
@@ -47,6 +94,12 @@ function Queue() {
   this.enq = function(obj) {
     this.q.add(obj);
     this.length++;
+  }
+  //function to Dequeue
+  this.deq=function(){
+    var obj=this.q.remove();
+    this.length--;
+    return obj;
   }
   //function to chk queue is empty
   this.isEmpty = function() {
@@ -113,22 +166,36 @@ function createcal() {
     }
     cal.enq(week);
   }
-//printiing cal
-  console.log(mon+" "+y);
-  console.log(" S  M  T  W  Th F  S");
-  var string="";
-  var week = cal.q.head;
-  for(i=0;i<cal.length;i++) {
-  var ptr=(week.obj.q.head);
-  var string=" ";
-  while (ptr) {
-    string += (ptr.obj.date+" ");
-    ptr = ptr.next;
+//printing cal
+console.log(mon+" "+y);
+console.log("S  M  T  W  Th F  S");
+while(cal.isEmpty()==false){
+  var week2=cal.deq();
+  while(week2.isEmpty()==false){
+    string="";
+    while(week2.isEmpty()==false){
+      string+=((week2.deq().date)+" ");
+    }
+   console.log(string);
   }
-  console.log(string);
-  week = week.next;
-  }
-  }
+}
+}
+//printiing cal by accessing data
+  // console.log(mon+" "+y);
+  // console.log(" S  M  T  W  Th F  S");
+  // var string="";
+  // var week = cal.q.head;
+  // for(i=0;i<cal.length;i++) {
+  // var ptr=(week.obj.q.head);
+  // var string=" ";
+  // while (ptr) {
+  //   string += (ptr.obj.date+" ");
+  //   ptr = ptr.next;
+  // }
+  // console.log(string);
+  // week = week.next;
+  // }
+
 //FUNCTION to cal month and number of days
 function calmonth() {
   switch (m) {

@@ -17,7 +17,7 @@ function binomial_coeff(n,k){
 
 function catalan(n){
   var c=binomial_coeff(2*n,n);
-  return Math.floor((c/(n+1))%mod);
+  return Math.floor((c/(n+1)));
 }
 
 function find(){

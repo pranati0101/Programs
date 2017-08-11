@@ -38,19 +38,20 @@ function list() {
     this.number++;
   }
   this.remove = function() {
-    var ptr;
-    ptr = this.head;
-    // removing the last element
-    while(ptr.next.next!=null){
-        ptr = ptr.next;
+    if(this.number==0){
+      return null;
     }
-    if (ptr.next.next == null) {
-      var data=ptr.next.obj;
-      this.end = ptr;
-      ptr.next = null;
-      this.number--;
-      return data;
-      }
+    if(this.number==1){
+      var obj=this.head.obj;
+      this.head=null;
+      this.end=null;
+      this.length--;
+      return obj;
+    }
+    var obj=this.head.obj;
+    this.head=this.head.next;
+    this.lebgth--;
+    return obj;
   }
 }
 
@@ -109,7 +110,7 @@ function createcal() {
     for (i = 0; i <7; ) {
         //storing date and day
       if(date>d){
-        weekDayNode = new weekDay("", days[++d0]);
+        weekDayNode = new weekDay('  ', days[++d0]);
         week.push(weekDayNode);
         i++;
       }
@@ -123,7 +124,7 @@ function createcal() {
           i++;
         }
         if(date<10){
-          weekDayNode = new weekDay((date++)+" ", days[d0]);
+          weekDayNode = new weekDay((date+++" "), days[d0]);
         }
         else{
           weekDayNode = new weekDay((date++), days[d0]);
@@ -134,42 +135,30 @@ function createcal() {
     }
     cal.push(week);
   }
-//printing cal
+//storing it in reverse order
 var stack2=new Stack();
-for(i=0;i<cal.length;i++){
+while(cal.isEmpty()==false){
   var week=cal.pop();
   var week2=new Stack();
-  for(k=0;k<week.length;k++){
-    week2.push(week.pop());
+  while(week.isEmpty()==false){
+    var day=week.pop();
+    week2.push(day);
+//  console.log("print: day: "+JSON.stringify(day));
   }
+  stack2.push(week2);
 }
-for(i=0;i<stack2.length;i++){
-  var week=stack2.pop();
+//for printing cal
+console.log(mon+" "+y);
+console.log("S  M  T  W  Th F  S");
+while(stack2.isEmpty()==false){
+  var week2=stack2.pop();
   string="";
-  for(i=0;i<week.length;i++){
-    string+=week.pop()+" ";
+  while(week2.isEmpty()==false){
+    string+=((week2.pop().date)+" ");
   }
-  console.log(string);
+ console.log(string);
 }
 }
-
-
-//printiing cal
-  // console.log(mon+" "+y);
-  // console.log(" S  M  T  W  Th F  S");
-  // var string="";
-  // var week = cal.stack.head;
-  // for(i=0;i<cal.length;i++) {
-  // var ptr=(week.obj.stack.head);
-  // var string=" ";
-  // while (ptr) {
-  //   string += (ptr.obj.date+" ");
-  //   ptr = ptr.next;
-  // }
-  // console.log(string);
-  // week = week.next;
-  // }
-  // }
 //FUNCTION to cal month and number of days
 function calmonth() {
   switch (m) {
