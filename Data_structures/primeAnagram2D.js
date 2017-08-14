@@ -3,6 +3,7 @@ var result=new Array();
 var flag=true;
 //function to check prime
 function prime(num){
+  if(num<2) return false;
   if(num==2 || num==3){
         return true;
   }

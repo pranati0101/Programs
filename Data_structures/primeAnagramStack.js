@@ -83,6 +83,7 @@ function prime(num){
   }
   return true;
 }
+//array for storing prime numbers
 var p=new Array();
 //storing prime numbers
 for(i=2;i<1000;i++){
@@ -92,7 +93,7 @@ for(i=2;i<1000;i++){
 }
 
 var flag=true;
-
+//instantiating new Stack
 var s=new Stack();
 //storing anagram
 for(j=0;j<p.length-1;j++){

@@ -1,3 +1,4 @@
+//taking input from file
 var fs = require('fs');
 var value = process.argv[2];
 var fname = "text.txt";

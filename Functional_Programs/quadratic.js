@@ -1,3 +1,4 @@
+//cal roots of a quadratic equation
 function test()
 {
     var a = document.getElementById("a").value;
@@ -5,7 +6,7 @@ function test()
     var c = document.getElementById("c").value;
     var delta=b*b-(4*a*c);
     if(delta<0){
-      document.write("Imaginary roots.");
+      alert("Imaginary roots.");
       return;
     }
     var root1=(-b+Math.sqrt(delta))/(2*a);

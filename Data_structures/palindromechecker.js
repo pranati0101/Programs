@@ -1,6 +1,7 @@
-var str=process.argv[2]; //taking input from cmd
+//taking input from cmd
+var str=process.argv[2];
 palindrome(str);
-
+//implementing dequeue using array
 function Dequeue()
 {
  this.dq=new Array();
@@ -34,7 +35,7 @@ this.size=function(){
 }
 
 function palindrome(str){
-  dq=new Dequeue();
+  var dq=new Dequeue();
   str=str.split("");
   for(var i=0;i<str.length;i++){
     dq.addRear(str[i]);

@@ -1,30 +1,31 @@
 arr = ["ram","shyam","aman","lakshman"];
-//console.log(mergesort(arr));
 console.log("Sorted list is " + mergesort(arr));
 
+//merge sort function
 function mergesort(arr) {
   var left = [],
     right = [],
     l = 0,
     r = arr.length;
   if (arr.length < 2) {
-    return arr; //if only 2 or less than 2 elements are present, return array
-  } else {
-    m = Math.floor(arr.length / 2); //cal middle index
+    //if only 2 or less than 2 elements are present, return array
+    return arr;
+  }
+  else {
+    //cal middle index
+    m = Math.floor(arr.length / 2);
     i = 0, j = 0;
+    //copying first half into left
     while (i < m) {
-
       left[i] = arr[i];
-      i++; //copying first half into left
+      i++;
     }
-
+//copying second half into right
     while (i < r) {
-      //copying second half into right
       right[j] = arr[i];
       j++;
       i++;
     }
-
     // left = arr.slice(l, m);
     // right = arr.slice(m, r);
     left = mergesort(left);
@@ -33,7 +34,7 @@ function mergesort(arr) {
     //return merge(mergesort(left), mergesort(right));
   }
 }
-
+//for merging arrays
 function merge(left, right) {
   var result = new Array();
   var i = 0,

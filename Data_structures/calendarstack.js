@@ -1,5 +1,5 @@
-var m = +process.argv[2];
-var y = +process.argv[3];
+var month = +process.argv[2];
+var year = +process.argv[3];
 var days = ["S", "M", "T", "W", "Th", "F", "S"];
 var mon="",d=0;
 
@@ -96,9 +96,9 @@ function leap(y) {
 }
 
 function createcal() {
-  y0=y-(14-m)/12;
+  y0=year-(14-month)/12;
   x=y0+y0/4-y0/100+y0/400;
-  m0=m+12*x*((14-m)/12)-1;
+  m0=month+12*x*((14-month)/12)-1;
   var date=1;
   //calculating number of days and month
   calmonth();
@@ -148,7 +148,7 @@ while(cal.isEmpty()==false){
   stack2.push(week2);
 }
 //for printing cal
-console.log(mon+" "+y);
+console.log(mon+" "+year);
 console.log("S  M  T  W  Th F  S");
 while(stack2.isEmpty()==false){
   var week2=stack2.pop();
@@ -161,7 +161,7 @@ while(stack2.isEmpty()==false){
 }
 //FUNCTION to cal month and number of days
 function calmonth() {
-  switch (m) {
+  switch (month) {
     case 1:
       mon = "January";
       d = 31;
@@ -217,5 +217,4 @@ function calmonth() {
       break;
   }
 }
-
 createcal();

@@ -80,7 +80,7 @@ function prime(num){
   }
   return true;
 }
-
+//global var for storing prime numbers
 var p=new Array();
 //storing prime numbers
 for(i=2;i<1000;i++){

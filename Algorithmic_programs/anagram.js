@@ -1,8 +1,9 @@
+// function to chk anagram
 function test() {
   var str1 = document.getElementById("m").value;
   var str2 = document.getElementById("n").value;
   if (str1.length != str2.length) {
-    console.log("not anagrams");
+    document.write("not anagrams");
     return;
   }
   //checking condition of anagram

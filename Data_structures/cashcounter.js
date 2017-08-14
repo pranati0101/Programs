@@ -1,8 +1,6 @@
 var q=new Queue();
 var cash=0;
-
-
-
+//implementiing queue using array
 function Queue()
 {
  this.q=new Array();
@@ -24,7 +22,7 @@ function Queue()
    }
  }
 }
-
+//driver function
 function start(){
   cash=parseInt(document.getElementById("cash").value);
 }

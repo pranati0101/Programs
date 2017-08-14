@@ -1,6 +1,6 @@
 var arr=new Array();
 var n=0;
-
+//storing prime numbers
 for (var i = 0; i < 10; i++) {
   arr[i] = new Array();
   for (j = 0; j < 100; j++) {
@@ -15,10 +15,9 @@ console.log("Prime numbers: ");
 for(i=0;i<10;i++){
   console.log("["+arr[i].join(" ")+"]");
 }
-
-
 //function to check prime
 function prime(num){
+  if(num<2) return false;
   if(num==2 || num==3){
         return true;
   }

@@ -2,15 +2,15 @@ var fs = require('fs');
 var value=process.argv[2];
 var fname = "text.txt";
 var str = "";
+//reading from file
 fs.readFile(fname, function(err, data) {
   if (err) {
     console.log(err);
   }
-  console.log("data : " + data);
+  console.log("File data : " + data);
   str = str + data;
   str=str.split(",").sort();
-  console.log("str: " + str);
-  console.log("value: "+value);
+  console.log("Value to be searched: "+value);
   if(binarySearch(str,value,0,str.length-1)>=0){
     console.log("Found");
   }
@@ -19,6 +19,27 @@ fs.readFile(fname, function(err, data) {
   }
 });
 
+//binary search
+function binarySearch(arr,value,left,right){
+  if(right>=left){
+  var mid=Math.floor((left+right)/2);
+
+    if(arr[mid]==value){
+      return mid;
+    }
+    else if(value>arr[mid]){
+      return binarySearch(arr,value,mid+1,right);
+    }
+    else if(value<arr[mid]){
+      return binarySearch(arr,value,left,mid-1);
+    }
+  }
+  else{
+    return -1;
+  }
+}
+
+//when value is taken from user
 // // arr = str.split(",");
 // // arr.sort();
 // console.log("arr :"+arr);
@@ -36,22 +57,3 @@ fs.readFile(fname, function(err, data) {
 //
 // }
 //
-function binarySearch(arr,value,l,r){
-
-  if(r>=l){
-  var mid=Math.floor((l+r)/2);
-
-    if(arr[mid]==value){
-      return mid;
-    }
-    else if(value>arr[mid]){
-      return binarySearch(arr,value,mid+1,r);
-    }
-    else if(value<arr[mid]){
-      return binarySearch(arr,value,l,mid-1);
-    }
-  }
-  else{
-    return -1;
-  }
-}

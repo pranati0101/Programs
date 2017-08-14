@@ -1,8 +1,8 @@
+//function for comparing
 function compare(a, b) {
   return b - a
 }
-
-
+//implementing hash map
 function hashMap() {
   this.length = 0;
   this.hm = new Array();
@@ -33,9 +33,7 @@ hashMap.prototype.printHash = function() {
   for (var i = 0; i < 11; i++) {
     if(this.hm[i].head!=null){
       console.log(i+": "+this.hm[i].print());
-
     }
-
   }
 };
 
@@ -47,11 +45,9 @@ function node(data, next) {
 
 //linked list structure
 function linkedList() {
-
   this.head = null;
   this.end = null;
   this.number = 0;
-
 }
 
 //for adding node to the list
@@ -114,13 +110,14 @@ linkedList.prototype.print = function() {
     current = current.next;
   }
   return(string.trim());
-
 };
 
 // var h1 = new hashMap();
 // h1.insert(1);h1.insert(82);h1.insert(36);h1.insert(43);h1.insert(95);h1.insert(66);h1.insert(7);
 // h1.insert(88);h1.insert(99);h1.insert(10);h1.insert(77);
 // h1.printHash();
+
+//taking input from file
 var fs = require('fs');
 var value = process.argv[2];
 var fname = "text1.txt";
@@ -158,5 +155,4 @@ fs.readFile(fname, function(err, data) {
       console.log(err);
     }
   });
-
 });

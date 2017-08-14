@@ -1,5 +1,5 @@
-var m = +process.argv[2];
-var y = +process.argv[3];
+var month = +process.argv[2];
+var year = +process.argv[3];
 var days = {};
 var cal = [];
 
@@ -17,13 +17,14 @@ function leap(y) {
     return false;
   }
 }
-
+//driver function
 function calendar() {
-  y0=y-(14-m)/12;
+  //cal day of week
+  y0=year-(14-month)/12;
   x=y0+y0/4-y0/100+y0/400;
-  m0=m+12*x*((14-m)/12)-1;
-//  d0=Math.floor((d+x+31*m0/12)%7);
-  switch (m) {
+  m0=month+12*x*((14-month)/12)-1;
+
+  switch (month) {
     case 1:
       mon = "January";
       d = 31;
@@ -78,20 +79,16 @@ function calendar() {
       return;
       break;
   }
-
   //assigning values to days
   for (var i = 0; i < d; i++) {
     days[i] = Math.floor((i+x+31*m0/12)%7);
   }
-
   //storing month & number of days in month
-
   var j = 0,k;
   var date=1;
   for (i=0;i<d;) {
     //week array
     cal[j] = (new Array(7));
-
     //assigning values in week array
      k = 0;
      //storing space before actual day
@@ -108,21 +105,17 @@ function calendar() {
         }else{
             cal[j][k]=date++;
         }
-
         k++;i++;
       }
-
     }
     j++;
   }
 //printing calendar
-  console.log(mon +" " + y);
+  console.log(mon +" " + year);
   console.log("S  M  T  W Th  F  S");
   var str="";
   for(k=0;k<j;k++){
     str=cal[k].join(" ");
     console.log(str);
   }
-
-
 }

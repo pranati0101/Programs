@@ -1,3 +1,4 @@
+//stack using array
 function Stack()
 {
  this.stac=new Array();
@@ -19,8 +20,7 @@ function Stack()
    }
  }
 }
-
-
+//chkng expression
 function find(exp) {
   var i=0;
   var exp=document.getElementById("exp").value;

@@ -4,26 +4,26 @@
   <input type="text" id="userInput">Enter year.</input><br>
   <button onclick="test()">Submit</button>
   <script>
+  /*funcyioin to chk leap year*/
     function test() {
-      var ui = document.getElementById("userInput").value;
-      var temp = ui;
+      var year = document.getElementById("userInput").value;
+      var temp = year;
       if (temp.length > 4 || temp.length < 4) {
         window.alert("Not a four digit number.");
         return;
       }
-      if ((ui % 400 == 0)) {
+      if ((year % 400 == 0)) {
         document.write("Leap year.");
         return;
-      } else if ((ui % 100 == 0)) {
+      } else if ((year % 100 == 0)) {
         document.write("Not a leap year.");
         return;
-      } else if ((ui % 4 == 0)) {
+      } else if ((year % 4 == 0)) {
         document.write("Leap year.");
         return;
       } else {
         document.write("Not a leap year.");
       }
-
     }
   </script>
 </body>

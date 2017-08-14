@@ -1,20 +1,25 @@
- function test() {
-   var n = document.getElementById("userInput").value;
-   var arr = [];
-   var rno = 0;
-   var num = 0;
-   while (arr.length != n) {
-     num = Math.round(Math.random() * 10);
-     rno++;
-     if (check(arr, num) == true)
-       arr.push(num);
-   }
-   document.write("Total random numbers needed is " + rno + ".");
- }
-
- function check(arr, num) {
-   for (i = 0; i < arr.length; i++)
-     if (arr[i] == num)
-       return false;
-   return true;
- }
+//array to store coupon numbers
+var array = [];
+//var to store number of random numbers
+var randNumber = 0;
+var num = 0;
+//driver  fun ction
+function test() {
+  var number = document.getElementById("userInput").value;
+  while (array.length != number) {
+    num = Math.floor(Math.random() * 100);
+    randNumber++;
+    if (check(array, num) == true)
+      array.push(num);
+  }
+  alert("Total random numbers needed is " + randNumber + ".");
+  console.log(array);
+}
+//function to chk if num is present already in the array
+function check(array, num) {
+  for (i = 0; i < array.length; i++)
+    if (array[i] == num){
+          return false;
+    }
+  return true;
+}

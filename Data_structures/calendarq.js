@@ -1,5 +1,5 @@
-var m = +process.argv[2];
-var y = +process.argv[3];
+var month = +process.argv[2];
+var year = +process.argv[3];
 var days = ["S", "M", "T", "W", "Th", "F", "S"];
 var mon="",d=0;
 
@@ -9,7 +9,6 @@ function weekDay(date, day) {
   this.date = date;
   this.day = day;
 }
-
 // list node structure
 function node(obj, next) {
   this.obj = obj;
@@ -55,35 +54,6 @@ this.remove = function() {
   this.lebgth--;
   return obj;
 }
-  // this.remove=function(){
-  // //   var ptr;
-  // //   ptr = this.head;
-  // // if(this.number<2){
-  // //   //only one element present
-  // //   if(this.number==1){
-  // //     var data=this.head.obj;
-  // //   //  console.log("head:  "+this.head);
-  // //     this.head=null;
-  // //     this.end=null;
-  // //     return data;
-  // //   }
-  // //   var data=this.end.obj;
-  // //   this.end=this.head;
-  // //   this.head.next=null;
-  // //   return data;
-  // // }
-  // //   while(ptr.next.next!=null){
-  // //       ptr = ptr.next;
-  // //     //  console.log("ptr: "+ptr+" ptr.next: "+ptr.next+" ptr.next.next: "+ptr.next.next );
-  // //   }
-  // // // removing the last element
-  // //     var data=this.end.obj;
-  // //     this.end = ptr;
-  // //     ptr.next = null;
-  // //     this.number--;
-  // //     return data;
-  // // }
-  // }
 }
 
 //Queue function and methods
@@ -127,9 +97,9 @@ function leap(y) {
 }
 
 function createcal() {
-  y0=y-(14-m)/12;
+  y0=year-(14-month)/12;
   x=y0+y0/4-y0/100+y0/400;
-  m0=m+12*x*((14-m)/12)-1;
+  m0=month+12*x*((14-month)/12)-1;
   var date=1;
   //calculating number of days and month
   calmonth();
@@ -167,7 +137,7 @@ function createcal() {
     cal.enq(week);
   }
 //printing cal
-console.log(mon+" "+y);
+console.log(mon+" "+year);
 console.log("S  M  T  W  Th F  S");
 while(cal.isEmpty()==false){
   var week2=cal.deq();
@@ -180,25 +150,9 @@ while(cal.isEmpty()==false){
   }
 }
 }
-//printiing cal by accessing data
-  // console.log(mon+" "+y);
-  // console.log(" S  M  T  W  Th F  S");
-  // var string="";
-  // var week = cal.q.head;
-  // for(i=0;i<cal.length;i++) {
-  // var ptr=(week.obj.q.head);
-  // var string=" ";
-  // while (ptr) {
-  //   string += (ptr.obj.date+" ");
-  //   ptr = ptr.next;
-  // }
-  // console.log(string);
-  // week = week.next;
-  // }
-
 //FUNCTION to cal month and number of days
 function calmonth() {
-  switch (m) {
+  switch (month) {
     case 1:
       mon = "January";
       d = 31;
@@ -254,5 +208,51 @@ function calmonth() {
       break;
   }
 }
-
 createcal();
+//--------------------------------------------------------------------------------------------------------------------
+//
+//printiing cal by accessing data
+  // console.log(mon+" "+y);
+  // console.log(" S  M  T  W  Th F  S");
+  // var string="";
+  // var week = cal.q.head;
+  // for(i=0;i<cal.length;i++) {
+  // var ptr=(week.obj.q.head);
+  // var string=" ";
+  // while (ptr) {
+  //   string += (ptr.obj.date+" ");
+  //   ptr = ptr.next;
+  // }
+  // console.log(string);
+  // week = week.next;
+  // }
+
+/// this.remove=function(){
+// //   var ptr;
+// //   ptr = this.head;
+// // if(this.number<2){
+// //   //only one element present
+// //   if(this.number==1){
+// //     var data=this.head.obj;
+// //   //  console.log("head:  "+this.head);
+// //     this.head=null;
+// //     this.end=null;
+// //     return data;
+// //   }
+// //   var data=this.end.obj;
+// //   this.end=this.head;
+// //   this.head.next=null;
+// //   return data;
+// // }
+// //   while(ptr.next.next!=null){
+// //       ptr = ptr.next;
+// //     //  console.log("ptr: "+ptr+" ptr.next: "+ptr.next+" ptr.next.next: "+ptr.next.next );
+// //   }
+// // // removing the last element
+// //     var data=this.end.obj;
+// //     this.end = ptr;
+// //     ptr.next = null;
+// //     this.number--;
+// //     return data;
+// // }
+// }

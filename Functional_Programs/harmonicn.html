@@ -4,16 +4,17 @@
   <input type="text" id="userInput">Enter the value of N.</input><br>
   <button onclick="test()">Submit</button>
   <script>
+  /*calculate harmonic number*/
+    var harmonicNum = 0;
     function test() {
-      var hn = 0;
-      var n = document.getElementById("userInput").value;
-      if (n == 0) {
+      var number = document.getElementById("userInput").value;
+      if (number == 0) {
         window.alert("Enter number greater than zero.");
       }
       for (i = 1; i <= n; i++) {
-        hn = hn + (1 / i);
+        harmonicNum = harmonicNum + (1 / i);
       }
-      document.write(hn);
+      document.write(harmonicNum);
 
     }
   </script>

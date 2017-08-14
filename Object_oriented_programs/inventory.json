@@ -1,17 +1,17 @@
 {"inventory":[
   {
     "name":"rice",
-    "weight":"50 ton",
-    "price":"40"
+    "weight":50,
+    "price":40
   },
   {
     "name":"wheat",
-    "weight":"60 ton",
-    "price":"50"
+    "weight":60,
+    "price":50
   },
   {
     "name":"pulses",
-    "weight":"70 ton",
-    "price":"70"
+    "weight":70,
+    "price":70
   }
 ]}

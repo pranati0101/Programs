@@ -1,3 +1,4 @@
+//printing prime in the range 0-1000
 for (i = 2; i <= 1000; i++) {
   if (prime(i) === true)
     console.log(i);

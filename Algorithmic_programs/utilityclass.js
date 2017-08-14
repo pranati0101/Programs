@@ -1,10 +1,15 @@
 //arr=new Array();
 arr = ["ram", "shyam", "aman", "zayn"];
+var time=new Array();
 //arr=[09,43,78,1,98,37,56];
-//insertionsort(arr);
-//bubblesort(arr);
+console.log("Insertion sort: ");
+insertionsort(arr);
+console.log("Bubble sort: ");
+bubblesort(arr);
+console.log("Binary Search: ");
 binarySearch(arr,"aman");
-
+bubblesort(time);
+//bubblesort function
 function bubblesort(data) {
   // var startTimeBubble= new Date();
   var startTimeBubble= process.hrtime();
@@ -20,9 +25,10 @@ function bubblesort(data) {
   console.log(arr);
   var endTimeBubble= process.hrtime();
   var td=(endTimeBubble[1]-startTimeBubble[1]);
+  time.push(td);
   console.log("Elapsed time for bubble sort "+td+" nanoseconds");
 }
-
+//insertion sort
 function insertionsort(arr) {
   var startTime= process.hrtime();
   for (i = 1; i < arr.length; i++) {
@@ -37,9 +43,10 @@ function insertionsort(arr) {
   console.log(arr);
   var endTime= process.hrtime();
   var td=(endTime[1]-startTime[1]);
+    time.push(td);
   console.log("Elapsed time for insertion sort "+td+" nanoseconds");
 }
-
+//binary search function
 function binarySearch(arr,value){
     insertionsort(arr);
     arr=arr.reverse();
@@ -54,10 +61,32 @@ function binarySearch(arr,value){
     }
     var endTime= process.hrtime();
     var td=(endTime[1]-startTime[1]);
+      time.push(td);
     console.log("Elapsed time for binary search "+td+" nanoseconds");
 
 }
-//
+
+//function for binary search by iterative method
+function binarySearchUtil(arr,value,l,r){
+  var mid=Math.round((l+r)/2);
+  while(r>=l && arr[mid]!=value){
+     mid=Math.round((l+r)/2);
+    if(value>arr[mid]){
+      l=mid+1;
+    }
+    if(value<arr[mid]){
+      r=mid-1;
+    }
+  }
+  if(arr[mid]==value){
+    return mid;
+  }
+  else{
+    return -1;
+  }
+}
+
+////binary search function using recursive method
 // function binarySearchUtil(arr,value,l,r){
 //   if(r>=l){
 //   var mid=Math.round((l+r)/2);
@@ -76,24 +105,3 @@ function binarySearch(arr,value){
 //     return -1;
 //   }
 // }
-
-function binarySearchUtil(arr,value,l,r){
-
-  var mid=Math.round((l+r)/2);
-  while(r>=l && arr[mid]!=value){
-     mid=Math.round((l+r)/2);
-    if(value>arr[mid]){
-      l=mid+1;
-    }
-    if(value<arr[mid]){
-      r=mid-1;
-    }
-  }
-  if(arr[mid]==value){
-    return mid;
-  }
-  else{
-    return -1;
-  }
-
-}
