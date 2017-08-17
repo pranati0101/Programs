@@ -73,6 +73,24 @@ linkedList.prototype.remove = function(item) {
     ptr = ptr.next;
   }
 };
+// /for searching the item
+linkedList.prototype.search = function(item) {
+  var ptr;
+  ptr = this.head;
+  //value at beginning of list
+  if (ptr.obj.firstname == item) {
+    return ptr.obj;
+  }
+  while (ptr.next != null) {
+    if (ptr.obj.firstname == item) {
+      return ptr.obj;
+    }
+    //traverse untill item is found or you reach at the last of the list
+    ptr = ptr.next;
+  }
+  console.log("not found");
+};
+
 //function to print linked list
 linkedList.prototype.print = function() {
   var string = '';
@@ -109,7 +127,12 @@ hashMap.prototype.remove= function(obj){
   var slot =(obj.firstname.charAt(0))-65;
   this.hm[slot].remove(obj);
 }
-
+//for searching value
+hashMap.prototype.search= function(name){
+  var slot =(name.charAt(0))-65;
+  var obj=this.hm[slot].search(name);
+  return obj;
+}
 //for printing hash Map
 hashMap.prototype.printHash = function() {
   for (i in this.hm) {
@@ -156,6 +179,11 @@ add=function(){
   console.log("c");
 }
 //function to edit Contents
-edit=function(){
-  
+function update(){
+  var val=document.getElementById("selectlist").value;
+  if(val !=null){
+    var temp=book.search(val);
+    
+  }
+
 }
