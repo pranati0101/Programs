@@ -106,7 +106,7 @@ function StockAccount(string){
   this.transact=new Queue();
   //return value of ccount in double
   this.valueOf=function(){
-    return parseDouble(this.account);
+    return (this.account);
   }
   //buys shares of company
   this.buy=function( symbol,amount,snumber){

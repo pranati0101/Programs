@@ -1,6 +1,7 @@
 //file system module
 var fs=require('fs');
 var fname='stock.txt';
+var inputFile='name.txt';
 
 // list node structure
 function node(obj, next) {
@@ -73,14 +74,14 @@ this.transact.push(new transaction("created"));
 this.value=(shareNumber*sharePrice);
 }
 //stockAccount object
-function StockAccount(string){
+function StockAccount(inputFile){
   // string=prompt("Enter name.");
-  this.name=string;
+  this.name=fs.readFileSync(inputFile);
   this.account=0;
   this.list1=new list();
   //return value of ccount in double
   this.valueOf=function(){
-    return parseDouble(this.account);
+    return (this.account);
   }
   //buys shares of company
   this.buy=function( symbol,amount,snumber){
@@ -143,7 +144,7 @@ function StockAccount(string){
 }
 //driver function
 function test(){
-var s1=new StockAccount('ABC');
+var s1=new StockAccount(inputFile);
 s1.buy('X',80,4);s1.buy('Y',40,5);
 s1.sell('X',40,1);
 // s1.save();

@@ -23,7 +23,7 @@ function StockAccount(string){
   this.list=[];
   //return value of ccount in double
   this.valueOf=function(){
-    return parseDouble(this.account);
+    return (this.account);
   }
   //buys shares of company
   this.buy=function( symbol,amount,snumber){
@@ -40,7 +40,6 @@ function StockAccount(string){
     var stock=new Stock(symbol,snumber,Math.round(amount/snumber));
     this.list.push(stock);
     this.account+=amount;
-
   }
   //sells shares
   this.sell=function( symbol,amount,snumber){
@@ -95,8 +94,7 @@ s1.buy('X',80,4);s1.buy('Y',40,5);
 s1.sell('X',40,1);
 s1.save();
 s1.printReport();
-
-
+console.log(s1.valueOf());
 }
 //calling function
 test();

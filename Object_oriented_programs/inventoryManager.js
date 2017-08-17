@@ -8,9 +8,6 @@ var fname = "inventory.json";
 //   JSON.parse(d);
 //   inventoryManager();
 // });
-
-inventoryManager();
-
 //var to hold total price of inventory
 var total=0;
 
@@ -26,7 +23,7 @@ function inventoryFactory(name,weight,price){
     for(ind in data.inventory){
       console.log("Name: "+data.inventory[ind].name+"\n"+"Cost: "+(parseFloat(data.inventory[ind].weight)
                                                                       *parseFloat(data.inventory[ind].price)));
-      total+=parseFloat(data.inventory[ind].weight)*parseFloat(data.inventory[ind].price);
+      total=total+(parseFloat(data.inventory[ind].weight)*parseFloat(data.inventory[ind].price));
     }
     console.log("Total : "+total);
 }
@@ -35,9 +32,10 @@ function inventoryFactory(name,weight,price){
 function inventoryManager(){
   data=JSON.parse(fs.readFileSync(fname));
   console.log(data);
- var name=process.argv[2];
- var weight=process.argv[3];
- var cost=process.argv[4];
+   var name=process.argv[2];
+   var weight=process.argv[3];
+   var cost=process.argv[4];
   inventoryFactory(name,weight,cost);
   console.log(JSON.stringify(data));
 }
+inventoryManager();
