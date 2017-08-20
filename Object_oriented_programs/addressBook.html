@@ -9,6 +9,8 @@
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="dataStructure.js"></script>
+  <script type="text/javascript" src="file.js"></script>
   <script src="addressBook.js"></script>
 </head>
 <!--body division  -->
@@ -17,18 +19,13 @@
   <!-- creating panel with file menu on header select list displaying person in body and other options in footer -->
   <div class="panel panel-default">
     <div class="panel-heading">
-      <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">File
-         <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><button type="button" class="btn btn-md" name="new">New</button></li><br>
-          <li><button type="button" class="btn btn-md" name="open">Open</button></li><br>
-          <li<button type="button" class="btn btn-md" name="save">Save</button></li><br>
+          <button type="button" class="btn btn-md" name="new" onclick="new1()">New</button>
+          <button type="button" class="btn btn-md" name="open"
+            data-toggle="modal" data-target="#open">Open</button>
+          <button type="button" class="btn btn-md" name="save">Save</button>
           <!--Modal dialog box will appear when save as button is clicked asking file path  -->
-            <li><button type="button" class="btn btn-md" name="saveas" data-toggle="modal" data-target="#saveas">SaveAs</button></li>
-        </ul>
-      </div>
+          <button type="button" class="btn btn-md" name="saveas"
+              data-toggle="modal" data-target="#saveas">SaveAs</button>
     </div>
     <!-- using select list in panel body for showing contacts or persons added to the list -->
     <div class="panel-body">
@@ -73,7 +70,7 @@
         </div>
         <div class="modal-footer">
           <!--Add and cancel options  -->
-          <button type="button" class="btn btn-default" onclick="addinbook()" >Add</button>
+          <button type="button" class="btn btn-default" onclick="addinbook()">Add</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -98,7 +95,28 @@
       </div>
     </div>
   </div>
-
+<div id="link">
+  <!--for appending downloadlink  -->
+</div>
+<!-- modal class for open button -->
+  <div class="modal fade" id="open" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="openfile">Enter File Name with path:</label>
+            <input type="text" class="form-control" id="openfile">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- save and cancel button in footer -->
+          <button type="button" class="btn btn-default" onclick="openFile()">Open</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

@@ -1,234 +1,12 @@
-//person object to be stored in address book
-function person(firstname, lastname, number, address, city, state, pin) {
-  this.firstname = firstname;
-  this.lastname = lastname;
-  this.number = number;
-  this.address = address;
-  this.city = city;
-  this.state = state;
-  this.pin = pin;
-}
-//function for comparing
-function compare(a, b) {
-  return (b - a);
-}
-//data structure used is hashMap using linked list
-// list node structure
-function node(obj, next) {
-  this.obj = obj;
-  this.next = null;
-};
-
-//linked list structure
-function linkedList() {
-  this.head = null;
-  this.end = null;
-  this.length = 0;
-}
-
-//for adding node to the list
-linkedList.prototype.add = function(obj) {
-  var node1 = new node(obj, null);
-  console.log("in insert linked list");
-  //no nodes are present before
-  if (this.head == null) {
-      console.log("first insert");
-    this.head = node1;
-    this.end = node1;
-    this.length++;
-    return;
-  }
-  //if nodes are present, add at last
-  else {
-    var temp=new node(null,null);
-    var prev=new node(null,null);
-    temp=this.head;
-    prev=this.head;
-    if(compare(temp.obj.firstname,node1.obj.firstname)>0){
-      node1.next=temp;
-      this.head=node1;
-      this.length++;
-      return;
-    }
-    //iterating till temp reaches last node
-    while(temp.next!=null){
-      temp=temp.next;
-      //add after temp
-      if(compare(temp.obj.firstname,node1.obj.firstname)>0){
-        node1.next=temp.next;
-        temp.next=node1;
-        this.length++;
-        return;
-      }
-      //same last names
-      else if(compare(temp.obj.firstname,node1.obj.firstname)==0){
-        //compare by first name
-        //add after temp
-        if(compare(temp.obj.lastname,node1.obj.lastname)>0){
-          node1.next=temp.next;
-          temp.next=node1;
-          this.length++;
-          return;
-        }
-        //add before temp
-        else if(compare(temp.obj.lastname,node1.obj.lastname)<0){
-          node1.next=prev.next;
-          prev.next=node1;
-          this.length++;
-          return;
-        }
-        //same first name
-        //compare by pin code
-        else{
-          //add after temp
-          if(compare(temp.obj.pin,node1.obj.pin)>0){
-            node1.next=temp.next;
-            temp.next=node1;
-            this.length++;
-            return;
-          }
-          //other cases add before temp
-          else{
-              node1.next=temp.next;
-              temp.next=node1;
-              this.length++;
-              return;
-        }
-      }
-    }
-    //incrementing prev pointer
-          prev=prev.next;
-  }
-  //no position found add at last
-  this.end.next = node1;
-  this.end = node1;
-  //increment the nummber of nodes
-  this.length++;
-}
-};
-
-//for removing the item
-linkedList.prototype.remove = function(item) {
-  var ptr;
-  ptr = this.head;
-  //value at beginning of list
-  if (ptr.obj.number == item.number) {
-    this.head = ptr.next;
-    this.length--;
-    return;
-  }
-  while (ptr.next != null) {
-    if (ptr.next.obj.number == item.number) {
-      // present at the last
-      if (ptr.next.next == null) {
-        this.end = ptr;
-        ptr.next = null;
-        this.length--;
-        return;
-      }
-      // other cases
-      else {
-        ptr.next = ptr.next.next;
-        this.length--;
-        return;
-      }
-    }
-    //traverse untill item is found or you reach at the last of the list
-    ptr = ptr.next;
-  }
-};
-// /for searching the item
-linkedList.prototype.search = function(item) {
-  var ptr;
-  ptr = this.head;
-  //value at beginning of list
-  if (ptr.obj.firstname == item) {
-    return ptr.obj;
-  }
-  while (ptr.next != null) {
-    if (ptr.obj.firstname == item) {
-      return ptr.obj;
-    }
-    //traverse untill item is found or you reach at the last of the list
-    ptr = ptr.next;
-  }
-  console.log("not found");
-};
-
-//function to print linked list
-linkedList.prototype.print = function() {
-  var string = '';
-  var current = this.head;
-  while (current) {
-    string += JSON.stringify(current.obj) + ' ';
-    current = current.next;
-  }
-  return (string.trim());
-};
-
-//implementing hash map
-function hashMap() {
-  this.length = 0;
-  this.hm = new Array();
-  //creating linked list at first slot
-  for (i = 0; i < 26; i++) {
-    this.hm[i] = (new linkedList());
-  }
-}
-
-//for adding elements in hash Map
-hashMap.prototype.insert = function(obj) {
-  //increase the length
-  this.length++;
-  //calculating slot
-  var slot = (obj.firstname.charCodeAt(0))-65;
-  //inserting element in linked list present at that slot
-  this.hm[slot].add(obj);
-};
-
-//for removing element in hashMap
-hashMap.prototype.remove = function(obj) {
-  var slot = (obj.firstname.charCodeAt(0)) - 65;
-  console.log(slot);
-    console.log("hash remove "+this.hm[slot]);
-  this.hm[slot].remove(obj);
-}
-//for searching value
-hashMap.prototype.search = function(name) {
-  var slot = (name.charCodeAt(0))-65;
-  var obj = this.hm[slot].search(name);
-  console.log("object "+obj);
-  return obj;
-}
-//for printing hash Map
-hashMap.prototype.printHash = function() {
-  for (i in this.hm) {
-    if (this.hm[i].head != null) {
-      console.log(i + ": " + this.hm[i].print());
-    }
-  }
-};
 //var book used to assign instantiation of hash map
 var book;
-//Address Book object
-function addressBook() {
-  book = new hashMap();
-  //function to create new address book
-  this.new1 = function() {
-    this.book = new hashMap();
-  }
-}
-//function to save file
-function saveas(){
-  var fname=document.getElementById("filename").value;
-  var data=JSON.stringify(book.hm);
-  fs.writeFile(fname,data,function(err){
-    if(err) console.log(err);
-  })
-}
 //function to add person
 function addinbook() {
   console.log("add function");
+  //if added for the first time and no file is opened
+  if (book == null) {
+    book = new hashMap();
+  }
   //getting values from text box
   var firstname = document.getElementById("firstname").value;
   var lastname = document.getElementById("lastname").value;
@@ -239,9 +17,7 @@ function addinbook() {
   var pin = document.getElementById("pincode").value;
   //creating new person and adding to book
   var person1 = new person(firstname, lastname, number, address, city, state, pin);
-  if (book == null) {
-    book = new hashMap();
-  }
+
   book.insert(person1);
   console.log("after insert");
   //adding to select list in gui
@@ -270,7 +46,6 @@ else{
 //function for creating dialog box at run time
 // Creation of the alert message box.
 function createDialog(oldnum,oldadd,oldcity,oldstate,oldpin) {
-  console.log("in cd");
   var Modal = document.createElement('div');
   Modal.id = 'mymodal';
   Modal.role = 'dialog';
@@ -312,15 +87,14 @@ function createDialog(oldnum,oldadd,oldcity,oldstate,oldpin) {
   content.appendChild(footer);
 
   var node2= document.createElement('div');
-  node2.innerHTML=' <button type="button" class="btn btn-info btn-md onclick="edit()">Done</button>'+
-                   '<button type="button" class="btn btn-info btn-md" data-dismiss="modal">Cancel</button>';
-
+  node2.innerHTML=' <button type="button" class="btn btn-info btn-md"' +
+                    'onclick="edit()">Done</button>'+
+                   '<button type="button" class="btn btn-info btn-md"'+
+                   'data-dismiss="modal">Cancel</button>';
   footer.appendChild(node2);
-
   // Show modal dialog box
   $('#mymodal').modal('toggle');
   $('#mymodal').modal('show');
-
 }
 //var to store updated values
 var updatedobj=new person(null,null,null,null,null,null,null);
@@ -363,9 +137,7 @@ function edit(){
 function sortByName(){
   //remove all elements from selectlist
 var list=document.getElementById("selectlist");
-for(i=0;i<=list.length;i++){
-  list.remove(i);
-  }
+$("#selectlist option").remove();
   book.printHash();
   var sortedList=new Array();
   var p=0;
@@ -438,9 +210,7 @@ for(i=0;i<=list.length;i++){
 function sortByPin(){
   //remove all elements from selectlist
 var list=document.getElementById("selectlist");
-for(i=0;i<=list.length;i++){
-  list.remove(i);
-  }
+$("#selectlist option").remove();
   book.printHash();
   var sortedList=new Array();
   //storing all objects of book in array
