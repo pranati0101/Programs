@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--head tag with bootstrap cdn link  -->
+
 <head>
   <title>Address Phone Book</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="datastructure.js"></script>
+  <script type="text/javascript" src="file.js"></script>
   <script src="addressBook.js"></script>
 </head>
 <!--body division  -->
+
 <body>
   <div class="container"></div>
   <!-- creating panel with file menu on header select list displaying person in body and other options in footer -->
   <div class="panel panel-default">
     <div class="panel-heading">
-      <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">File
-         <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><button type="button" class="btn btn-md" name="new">New</button></li><br>
-          <li><button type="button" class="btn btn-md" name="open">Open</button></li><br>
-          <li<button type="button" class="btn btn-md" name="save">Save</button></li><br>
-          <!--Modal dialog box will appear when save as button is clicked asking file path  -->
-            <li><button type="button" class="btn btn-md" name="saveas" data-toggle="modal" data-target="#saveas">SaveAs</button></li>
-        </ul>
+      <!-- <input type="file" onchange="openFile(event)"></input> -->
+      <div>
+        <label for="files" class="btn">Open File</label>
+        <input id="files" style="visibility:hidden;" type="file" onchange="openFile(event)">
       </div>
+      <button type="button" class="btn btn-md" name="new" onclick="new1()">New</button>
+      <!--Modal dialog box will appear when save as button is clicked asking file path  -->
+      <button type="button" class="btn btn-md" name="saveas" data-toggle="modal" data-target="#saveas">SaveAs</button>
     </div>
     <!-- using select list in panel body for showing contacts or persons added to the list -->
     <div class="panel-body">
       <form>
-          <label for="selectlist">Contacts</label><br>
+        <label for="selectlist">Contacts</label><br>
         <select multiple class="form-control" id="selectlist">
        </select>
       </form>
     </div>
     <!-- other buttons in panel footer -->
-  <div class="panel-footer">
-    <!--  on clicking add and edit button modal dialog box will appear-->
-    <input type="button" class="btn btn-info btn-md" value="Add" data-toggle="modal" data-target="#add">
-    <input type="button" class="btn btn-info btn-md" value="Edit" onclick="update()">
-    <input type="button" class="btn btn-info btn-md" value="Delete" onclick="deletefrombook()">
-    <input type="button" class="btn btn-info btn-md" value="SortByName" onclick="sortByName()">
-    <input type="button" class="btn btn-info btn-md" value="SortByZip" onclick="sortByPin()">
+    <div class="panel-footer">
+      <!--  on clicking add and edit button modal dialog box will appear-->
+      <input type="button" class="btn btn-info btn-md" value="Add" data-toggle="modal" data-target="#add">
+      <input type="button" class="btn btn-info btn-md" value="Edit" onclick="update()">
+      <input type="button" class="btn btn-info btn-md" value="Delete" onclick="deletefrombook()">
+      <input type="button" class="btn btn-info btn-md" value="SortByName" onclick="sortByName()">
+      <input type="button" class="btn btn-info btn-md" value="SortByZip" onclick="sortByPin()">
+    </div>
   </div>
-</div>
-<!-- Modal class definitions for add, edit and saveas buttons -->
+  <!-- Modal class definitions for add, edit and saveas buttons -->
   <div class="modal fade" id="add" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
@@ -73,13 +72,13 @@
         </div>
         <div class="modal-footer">
           <!--Add and cancel options  -->
-          <button type="button" class="btn btn-default" onclick="addinbook()" >Add</button>
+          <button type="button" class="btn btn-default" onclick="addinbook()">Add</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>
   </div>
-<!-- modal class for save as button -->
+  <!-- modal class for save as button -->
   <div class="modal fade" id="saveas" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
@@ -98,7 +97,12 @@
       </div>
     </div>
   </div>
+  <div id="link">
+    <!--for appending downloadlink  -->
+  </div>
+  <div id="sortarea">
 
+  </div>
 </body>
 
 </html>
