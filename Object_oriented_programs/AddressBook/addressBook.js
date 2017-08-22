@@ -1,5 +1,8 @@
 //var book used to assign instantiation of hash map
 var book;
+//var to store updated values
+var updatedobj;
+var temp;
 //function to add person
 function addinbook() {
   console.log("add function");
@@ -108,18 +111,15 @@ function createDialog(oldfname, oldlname, oldnum, oldadd, oldcity, oldstate, old
     var city = document.getElementById("mcity").value;
     var state = document.getElementById("mstate").value;
     var pin = document.getElementById("mpincode").value;
-    console.log("fname: " + pin);
     updatedobj = new person(fname, lname, number, address, city, state, pin);
     //if edition is done
     book.insert(updatedobj);
     book.remove(temp);
     console.log("update ended");
+    return;
   });
 
 }
-//var to store updated values
-var updatedobj;
-var temp;
 //function to edit Contents
 function update() {
   var val = document.getElementById("selectlist").value;
@@ -127,13 +127,36 @@ function update() {
     alert("No value is selected. Please select a value.");
     return;
   }
-  // var obj = book.search(val);
   console.log("entered");
   temp = book.search(val);
   console.log(temp);
   createDialog(temp.firstname, temp.lastname, temp.number, temp.address, temp.city, temp.state, temp.pin);
 }
-//firstname, lastname, number, address, city, state, pin
+//function to add table
+function addTable(row) {
+  document.getElementById("space").innerHTML=" ";
+  var myTableDiv = document.getElementById("space");
+
+  var table = document.createElement('TABLE');
+  table.border = '1';
+
+  var tableBody = document.createElement('TBODY');
+  table.appendChild(tableBody);
+
+  for (var i = 0; i < row; i++) {
+      var tr = document.createElement('TR');
+      tableBody.appendChild(tr);
+
+      for (var j = 0; j < 4; j++) {
+          var td = document.createElement('TD');
+          td.width = '200';
+          td.appendChild(document.createTextNode(" "));
+          tr.appendChild(td);
+      }
+  }
+  myTableDiv.appendChild(table);
+  return table;
+}
 
 //function to sort by name
 function sortByName() {
@@ -198,18 +221,18 @@ function sortByName() {
       }
     }
   }
-  //   var input = document.createElement('TEXTAREA');
-  //   input.setAttribute('name', 'post');
-  //   input.setAttribute('maxlength', 5000);
-  //   input.setAttribute('cols',80);
-  //   input.setAttribute('rows', 40);
-  // document.getElementById("body").append(input);
-  space = document.getElementById("sortarea");
-  for (i in sortedList) {
-    space.append("    " + sortedList[i].lastname + " " + sortedList[i].firstname + " " + sortedList[i].number);
-    // $("#space").append(<br>);
-  }
-
+  //displaying iin table format
+table=addTable(sortedList.length+1);
+table.rows[0].cells[0].innerHTML="<b>First Name</b>";
+table.rows[0].cells[1].innerHTML="<b>Last Name</b>";
+table.rows[0].cells[2].innerHTML="<b>Number</b>";
+table.rows[0].cells[3].innerHTML="<b>Pin Code</b>";
+    for(i=1;i<=sortedList.length;i++){
+        table.rows[i].cells[0].innerHTML=(sortedList[i-1].firstname);
+        table.rows[i].cells[1].innerHTML=(sortedList[i-1].lastname);
+        table.rows[i].cells[2].innerHTML=(sortedList[i-1].number);
+        table.rows[i].cells[3].innerHTML=(sortedList[i-1].pin);
+    }
 }
 //function to sort by Zip
 function sortByPin() {
@@ -273,10 +296,17 @@ function sortByPin() {
     }
   }
   //displaying result
-  space = document.getElementById("sortarea");
 
-  for (i in sortedList) {
-    space.append(sortedList[i].pin + " " + sortedList[i].lastname + " " + sortedList[i].firstname + " " + sortedList[i].number);
-    $("#space").append("<br>");
-  }
+  //displaying iin table format
+table=addTable(sortedList.length+1);
+table.rows[0].cells[0].innerHTML="<b>First Name</b>";
+table.rows[0].cells[1].innerHTML="<b>Last Name</b>";
+table.rows[0].cells[2].innerHTML="<b>Number</b>";
+table.rows[0].cells[3].innerHTML="<b>Pin Code</b>";
+    for(i=1;i<=sortedList.length;i++){
+        table.rows[i].cells[0].innerHTML=(sortedList[i-1].firstname);
+        table.rows[i].cells[1].innerHTML=(sortedList[i-1].lastname);
+        table.rows[i].cells[2].innerHTML=(sortedList[i-1].number);
+        table.rows[i].cells[3].innerHTML=(sortedList[i-1].pin);
+    }
 }
