@@ -32,6 +32,7 @@ function addinbook() {
 function deletefrombook() {
   console.log("entered");
   var val = document.getElementById("selectlist").value;
+  console.log(val);
   var ind = document.getElementById("selectlist").selectedIndex;
   if (val != null) {
     var list = document.getElementById("selectlist");
@@ -70,20 +71,20 @@ function createDialog(oldfname, oldlname, oldnum, oldadd, oldcity, oldstate, old
 
   var node = document.createElement('div');
   node.className = 'form-group';
-  node.innerHTML = ' <label for="firstname">First Name</label>' +
-    '<input type="text" class="form-control" id="firstname" disabled=true placeholder=' + oldfname + '>' +
-    '<label for="lastname">Last Name</label>' +
-    '<input type="text" class="form-control" id="lastname" disabled=true placeholder=' + oldlname + '>' +
-    ' <label for="number">Enter nummber</label>' +
-    '<input type="text" class="form-control" id="number" placeholder=' + oldnum + '>' +
-    '<label for="address">Enter Address:</label>' +
-    '<input type="text" class="form-control" id="address"placeholder=' + oldadd + '>' +
-    '<label for="city">Enter City:</label>' +
-    '<input type="text" class="form-control" id="city" placeholder=' + oldcity + '>' +
-    '<label for="state">Enter State:</label>' +
-    '<input type="text" class="form-control" id="state"placeholder=' + oldstate + '>' +
-    '<label for="pincode">Enter Pin Code:</label>' +
-    '<input type="text" class="form-control" id="pincode"placeholder=' + oldpin + '>';
+  node.innerHTML = ' <label for="mfirstname">First Name</label>' +
+    '<input type="text" class="form-control" id="mfirstname" disabled=true placeholder=' + oldfname + '>' +
+    '<label for="mlastname">Last Name</label>' +
+    '<input type="text" class="form-control" id="mlastname" disabled=true placeholder=' + oldlname + '>' +
+    ' <label for="mnumber">Enter nummber</label>' +
+    '<input type="text" class="form-control" id="mnumber" placeholder=' + oldnum + '>' +
+    '<label for="maddress">Enter Address:</label>' +
+    '<input type="text" class="form-control" id="maddress"placeholder=' + oldadd + '>' +
+    '<label for="mcity">Enter City:</label>' +
+    '<input type="text" class="form-control" id="mcity" placeholder=' + oldcity + '>' +
+    '<label for="mstate">Enter State:</label>' +
+    '<input type="text" class="form-control" id="mstate"placeholder=' + oldstate + '>' +
+    '<label for="mpincode">Enter Pin Code:</label>' +
+    '<input type="text" class="form-control" id="mpincode"placeholder=' + oldpin + '>';
   body1.appendChild(node);
 
   var footer = document.createElement('div');
@@ -98,10 +99,27 @@ function createDialog(oldfname, oldlname, oldnum, oldadd, oldcity, oldstate, old
   // Show modal dialog box
   $('#mymodal').modal('toggle');
   $('#mymodal').modal('show');
+
+  $("#editbtn").click(function() {
+    var fname = document.getElementById("mfirstname").placeholder;
+    var lname = document.getElementById("mlastname").placeholder;
+    var number = document.getElementById("mnumber").value;
+    var address = document.getElementById("maddress").value;
+    var city = document.getElementById("mcity").value;
+    var state = document.getElementById("mstate").value;
+    var pin = document.getElementById("mpincode").value;
+    console.log("fname: " + pin);
+    updatedobj = new person(fname, lname, number, address, city, state, pin);
+    //if edition is done
+    book.insert(updatedobj);
+    book.remove(temp);
+    console.log("update ended");
+  });
+
 }
 //var to store updated values
 var updatedobj;
-
+var temp;
 //function to edit Contents
 function update() {
   var val = document.getElementById("selectlist").value;
@@ -111,33 +129,12 @@ function update() {
   }
   // var obj = book.search(val);
   console.log("entered");
-  var temp = book.search(val);
+  temp = book.search(val);
+  console.log(temp);
   createDialog(temp.firstname, temp.lastname, temp.number, temp.address, temp.city, temp.state, temp.pin);
-  $("#editbtn").click(editfunc(document.getElementById("firstname").placeholder,
-    document.getElementById("lastname").placeholder,
-    document.getElementById("number").value,
-    document.getElementById("address").value,
-    document.getElementById("city").value,
-    document.getElementById("state").value,
-    document.getElementById("pincode").value));
-  book.remove(temp);
 }
-//function edit
-editfunc = function(firstname, lastname, number, address, city, state, pin) {
-  console.log("in edit()");
-  console.log("fname: " + firstname);
-  // var fname=document.getElementById("firstname").placeholder;
-  // var lname=document.getElementById("lastname").placeholder;
-  // var number = document.getElementById("number").value;
-  // var address = document.getElementById("address").value;
-  // var city = document.getElementById("city").value;
-  // var state = document.getElementById("state").value;
-  // var pin = document.getElementById("pincode").value;
-  updatedobj = new person(firstname, lastname, number, address, city, state, pin);
-  //if edition is done
-  book.insert(updatedobj);
-  console.log("update ended");
-}
+//firstname, lastname, number, address, city, state, pin
+
 //function to sort by name
 function sortByName() {
   //remove all elements from selectlist
@@ -201,15 +198,15 @@ function sortByName() {
       }
     }
   }
-//   var input = document.createElement('TEXTAREA');
-//   input.setAttribute('name', 'post');
-//   input.setAttribute('maxlength', 5000);
-//   input.setAttribute('cols',80);
-//   input.setAttribute('rows', 40);
-// document.getElementById("body").append(input);
+  //   var input = document.createElement('TEXTAREA');
+  //   input.setAttribute('name', 'post');
+  //   input.setAttribute('maxlength', 5000);
+  //   input.setAttribute('cols',80);
+  //   input.setAttribute('rows', 40);
+  // document.getElementById("body").append(input);
   space = document.getElementById("sortarea");
   for (i in sortedList) {
-    space.append("    "+sortedList[i].lastname + " " + sortedList[i].firstname + " " + sortedList[i].number);
+    space.append("    " + sortedList[i].lastname + " " + sortedList[i].firstname + " " + sortedList[i].number);
     // $("#space").append(<br>);
   }
 

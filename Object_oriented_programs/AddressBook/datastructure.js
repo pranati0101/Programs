@@ -118,20 +118,20 @@ linkedList.prototype.remove = function(item) {
     return;
   }
   while (ptr.next != null) {
+    // present at the last
+    if (ptr.next.next == null) {
+
+        if ((ptr.next.obj.firstname == item.firstname) && (ptr.next.obj.lastname == item.lastname)) {
+      this.end = ptr;
+      ptr.next = null;
+      this.length--;
+      return;
+    }
+    }
       if ((ptr.obj.firstname == item.firstname) && (ptr.obj.lastname == item.lastname)) {
-      // present at the last
-      if (ptr.next.next == null) {
-        this.end = ptr;
-        ptr.next = null;
-        this.length--;
-        return;
-      }
-      // other cases
-      else {
         ptr.next = ptr.next.next;
         this.length--;
         return;
-      }
     }
     //traverse untill item is found or you reach at the last of the list
     ptr = ptr.next;
@@ -145,12 +145,12 @@ linkedList.prototype.search = function(item) {
   if (ptr.obj.firstname == item) {
     return ptr.obj;
   }
-  while (ptr.next != null) {
+  while (ptr.obj!=null) {
+    //traverse untill item is found or you reach at the last of the list
+    ptr = ptr.next;
     if (ptr.obj.firstname == item) {
       return ptr.obj;
     }
-    //traverse untill item is found or you reach at the last of the list
-    ptr = ptr.next;
   }
   console.log("not found");
 };
