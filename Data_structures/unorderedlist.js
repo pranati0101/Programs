@@ -3,7 +3,7 @@ var fs = require('fs');
 var value = process.argv[2];
 var fname = "text.txt";
 var str = "";
-var l1 = new list();
+var list1 = new list();
 
 //reading from file
 fs.readFile(fname, function(err, data) {
@@ -15,15 +15,15 @@ fs.readFile(fname, function(err, data) {
   str = str.trim().split(",");
   // console.log(str);
   for (var i = 0; i < str.length; i++) {
-    l1.add(str[i]);
+    list1.add(str[i]);
   }
-  l1.print();
-  l1.remove(value);
-  l1.print();
+  list1.print();
+  list1.remove(value);
+  list1.print();
 
-  var ptr = l1.head;
+  var ptr = list1.head;
   str = [];
-  for (i = 0; i < l1.number; i++) {
+  for (i = 0; i < list1.number; i++) {
     str.push(ptr.data);
     ptr = ptr.next;
   }

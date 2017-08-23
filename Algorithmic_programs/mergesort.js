@@ -1,12 +1,18 @@
-arr = ["ram","shyam","aman","lakshman"];
+//input from cmd line
+arr=new Array();
+arr.push(process.argv[2]);
+arr.push(process.argv[3]);
+arr.push(process.argv[4]);
+arr.push(process.argv[5]);
+// arr = ["ram","shyam","aman","lakshman"];
 console.log("Sorted list is " + mergesort(arr));
 
 //merge sort function
 function mergesort(arr) {
   var left = [],
     right = [],
-    l = 0,
-    r = arr.length;
+    leftindex=0,
+    rightindex=arr.length;
   if (arr.length < 2) {
     //if only 2 or less than 2 elements are present, return array
     return arr;
@@ -21,7 +27,7 @@ function mergesort(arr) {
       i++;
     }
 //copying second half into right
-    while (i < r) {
+    while (i < rightindex) {
       right[j] = arr[i];
       j++;
       i++;

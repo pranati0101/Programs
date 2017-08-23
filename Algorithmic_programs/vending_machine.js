@@ -16,24 +16,24 @@ notes(cash);
 
 //cal min number of notes
 function notes(cash){
-  var c=cash,
+  var cashtemp=cash,
       num=0;
-  while(c>0){
-    for(i=0;i<arr.length;i++){
-      if(c>denominations[denominationsarr[i]])
+  while(cashtemp>0){
+    for(i=0;i<denominationsarr.length;i++){
+      if(cashtemp>denominations[denominationsarr[i]])
       {
-        denominations[denominationsarr[i]]=Math.floor(c/denominationsarr[i]);
-        c=Math.floor(c%denominationsarr[i]);
+        denominations[denominationsarr[i]]=Math.floor(cashtemp/denominationsarr[i]);
+        cashtemp=Math.floor(cashtemp%denominationsarr[i]);
       }
     }
   }
-for(i=0;i<arr.length;i++){
+for(i=0;i<denominationsarr.length;i++){
   num=num+denominations[denominationsarr[i]];
 }
 console.log("Total number of notes is "+num);
 console.log("Denomination : Number of notes");
 var i=0;
-while(i<arr.length){
+while(i<denominationsarr.length){
   if(denominations[denominationsarr[i]]!=0){
     console.log(denominationsarr[i]+" : "+denominations[denominationsarr[i]]);
   }

@@ -1,5 +1,10 @@
-//arr=new Array();
-arr = ["ram", "shyam", "aman", "zayn"];
+//input from cmd line
+arr=new Array();
+arr.push(process.argv[2]);
+arr.push(process.argv[3]);
+arr.push(process.argv[4]);
+arr.push(process.argv[5]);
+
 var time=new Array();
 //arr=[09,43,78,1,98,37,56];
 console.log("Insertion sort: ");
@@ -85,23 +90,3 @@ function binarySearchUtil(arr,value,l,r){
     return -1;
   }
 }
-
-////binary search function using recursive method
-// function binarySearchUtil(arr,value,l,r){
-//   if(r>=l){
-//   var mid=Math.round((l+r)/2);
-//     if(arr[mid]==value){
-//       console.log("found "+mid);
-//       return mid;
-//     }
-//     else if(arr[mid]<value){
-//       return binarySearchUtil(arr,value,mid+1,r);
-//     }
-//     else if(arr[mid]<value){
-//       return binarySearchUtil(arr,value,l,mid-1);
-//     }
-//   }
-//   else{
-//     return -1;
-//   }
-// }
