@@ -1,1 +1,1 @@
-Account name: ABC Account: 80 X Number of shares: 3 Share Price: 13 Value: 40 created : Thu Aug 17 2017 10:16:02 GMT+0530 (IST)sell : Thu Aug 17 2017 10:16:02 GMT+0530 (IST)Y Number of shares: 5 Share Price: 8 Value: 40 created : Thu Aug 17 2017 10:16:02 GMT+0530 (IST)
+Account name: ABC Account: 80 {"name":"Y","shareNumber":5,"sharePrice":8,"value":40} {"name":"X","shareNumber":3,"sharePrice":13,"value":40} 

@@ -1,7 +1,7 @@
 //file system module
 var fs=require('fs');
 var fname='stock.txt';
-var inputFile='name.txt';
+var inputFile='inputFile.txt';
 
 // list node structure
 function node(obj, next) {
@@ -136,10 +136,26 @@ function StockAccount(inputFile){
   }
   //print detailed report of stock account
   this.printReport=function(){
-    console.log("Stock Account Name: "+this.name);
-    console.log("Stock Account : "+this.account);
-    console.log("List of shares: ");
-    this.list1.print();
+      console.log(" ");
+      console.log("Stock Account Name: " + this.name);
+      console.log("Total Value of Stock Account : Rs." + this.account);
+      console.log(" ");
+      console.log("-------List of shares are as follows :----------");
+      console.log("");
+      temp = this.list1.head;
+      while (temp) {
+        console.log("Company symbol: " + temp.obj.name);
+        console.log("Number of shares: " + temp.obj.shareNumber);
+        console.log("Share Price: " + temp.obj.sharePrice);
+        console.log("Transaction Details: ");
+        for (i in temp.obj.transact) {
+          console.log("Date : " + temp.obj.transact[i].date + " Status : " + temp.obj.transact[i].status);
+        }
+
+        temp = temp.next;
+        console.log(" ");
+      }
+      // this.list1.print();
   }
 }
 //driver function
