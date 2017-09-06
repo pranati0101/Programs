@@ -12,6 +12,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="datastructure.js"></script>
   <script type="text/javascript" src="file.js"></script>
+    <script type="text/javascript" src="file2.js"></script>
   <script src="addressBook.js"></script>
 </head>
 <!--body division  -->
@@ -27,6 +28,7 @@
         <input id="files" style="visibility:hidden;" type="file" onchange="openFile(event)">
       </div>
       <button type="button" class="btn btn-md" name="new" onclick="new1()">New</button>
+      <button type="button" class="btn btn-md" id="SAVE">Save</button>
       <!--Modal dialog box will appear when save as button is clicked asking file path  -->
       <button type="button" class="btn btn-md" name="saveas" data-toggle="modal" data-target="#saveas">SaveAs</button>
     </div>
@@ -104,4 +106,21 @@
   <div id="space">
 
   </div>
+  <!-- <script type="text/javascript">
+  function editcontents() {
+    var fname = document.getElementById("mfirstname").placeholder;
+    var lname = document.getElementById("mlastname").placeholder;
+    var number = document.getElementById("mnumber").value;
+    var address = document.getElementById("maddress").value;
+    var city = document.getElementById("mcity").value;
+    var state = document.getElementById("mstate").value;
+    var pin = document.getElementById("mpincode").value;
+    updatedobj = new person(fname, lname, number, address, city, state, pin);
+    //if edition is done
+    book.insert(updatedobj);
+    book.remove(temp);
+    console.log("update ended");
+    return;
+  }
+  </script> -->
 </body>

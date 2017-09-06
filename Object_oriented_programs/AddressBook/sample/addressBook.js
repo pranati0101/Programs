@@ -116,7 +116,6 @@ function createDialog(oldfname, oldlname, oldnum, oldadd, oldcity, oldstate, old
     book.insert(updatedobj);
     book.remove(temp);
     console.log("update ended");
-    return;
   });
 
 }

@@ -1,5 +1,5 @@
 function func(){
-  var msg = "Hello <<name>>, we have your full name as <<fulname>> in our system.Your contact number is 91-XXXXXXXXXX.Please,let us know in case of any clarification. Thank you BridgeLabz 01/01/2016";
+  var msg = "Hello <<name>>, we have your full name as <<fulname>> in our system. <<name>>, your contact number is 91-XXXXXXXXXX.Please,let us know in case of any clarification. Thank you BridgeLabz 01/01/2016";
   var name = prompt("Enter your first name");
   var lastname = prompt("Enter ypur last name");
   var number = prompt("Enter your number")+" ";
@@ -15,11 +15,24 @@ function func(){
     mm = '0' + mm
   }
   today = mm + '/' + dd + '/' + yyyy; //getting date
-
+var firstname=new RegExp("<<name>>");
+var fullname=new RegExp("<<fulname>>");
+var number1=new RegExp("XXXXXXXXXX");
+var date=new RegExp("01/01/2016");
+while(firstname.test(msg)){
   msg=msg.replace("<<name>>",name);
-  msg=msg.replace("<<fulname>>",name+" "+lastname);
+}
+while(fullname.test(msg)){
+  msg=msg.replace("<<fulname>>",(name+" "+lastname));
+}
+while(number1.test(msg)){
   msg=msg.replace("XXXXXXXXXX",number);
+}
+while(date.test(msg)){
   msg=msg.replace("01/01/2016",today);
-  alert(msg);  //display msg
+}
+
+  // console.log(msg); //display msg
+  alert(msg);
 
 }

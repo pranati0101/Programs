@@ -23,6 +23,7 @@ fs.readFile(fname, function(err, data) {
   }
 
   list1.print();
+  console.log("removing");
   list1.remove(value);
   list1.print();
 
@@ -62,6 +63,7 @@ list.prototype.add = function(data) {
   var node1 = new node(data, null);
   var ptr = this.head;
   if (this.head == null) {
+    console.log("inserting at head");
     //no nodes are present before
     this.head = node1;
     this.end = node1;
@@ -69,7 +71,7 @@ list.prototype.add = function(data) {
     this.number++;
     return;
   } else {
-    if (compare(this.head.data, node1.data)) {
+    if (compare(this.head.data, node1.data)<0) {
       //inserting at beginning
       node1.next = this.head;
       this.head = node1;
@@ -78,7 +80,7 @@ list.prototype.add = function(data) {
     }
     //searching apt position
     while (ptr.next != null) {
-      if (compare(ptr.next.data, node1.data)) {
+      if (compare(ptr.next.data, node1.data)<0) {
         node1.next = ptr.next;
         ptr.next = node1;
         this.number++;

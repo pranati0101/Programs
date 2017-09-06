@@ -160,13 +160,17 @@ function StockAccount(inputFile){
 }
 //driver function
 function test(){
+var symbol=process.argv[2];
+var amount=process.argv[3];
+var number=process.argv[4];
+var symbol2=process.argv[5];
+var amount2=process.argv[6];
+var number2=process.argv[7];
 var s1=new StockAccount(inputFile);
-s1.buy('X',80,4);s1.buy('Y',40,5);
-s1.sell('X',40,1);
-// s1.save();
+s1.buy(symbol,amount,number);
+s1.sell(symbol2,amount2,number2);
+s1.save();
 s1.printReport();
-
-
 }
 //calling function
 test();

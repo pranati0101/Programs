@@ -45,7 +45,7 @@ function swapnibbles(str) {
   }
   i = 1;
   //converrting into decimal
-  while (i < str2.length) {
+  while (i <= str2.length) {
     sum += Math.pow(2, i-1) * str2[str2.length-i];
     i++;
   }

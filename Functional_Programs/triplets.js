@@ -17,7 +17,7 @@ function test()
 		{
 			for(k=j+1;k<length;k++)
 			{
-				if(((array[k]+array[i]+array[j])==0) && distinct(array[i],array[j],array[k],result)==true)
+				if(((array[k]+array[i]+array[j])===0) && distinct(array[i],array[j],array[k],result)==true)
 				{
 					count ++;
 					result.push(array[i]);

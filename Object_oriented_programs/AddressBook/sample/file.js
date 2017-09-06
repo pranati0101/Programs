@@ -55,18 +55,21 @@ console.log("finished");
    reader.readAsText(input.files[0]);
  };
 
-// function openFile(){
-//   console.log("in open");
-//   var filename=document.getElementById("openfile").value;
-//   console.log(filename);
-//       $.get(filename, function (data) {
-//         alert(":n inner function");
-//       console.log(data);
-//       filedata=(data);
-//       console.log("filedata in func: "+filedata);
-//       });
-//       console.log("file data: "+filedata);
-// }
+ //FUNCTION TO ADD PERSON INTHE FILE
+  //  function save() {
+  //    $.ajax({
+  //      url: '/save',
+  //      type: 'POST',
+  //      dataType: "JSON",
+  //      data: {
+  //        Data:book.hm,
+  //        filename:fname
+  //      },
+  //      sucess: function(data) {
+  //        alert("sucess");
+  //      }
+  //    });
+  //  }
 
 //function to save file by using <a> tag in html5
 function saveas(){

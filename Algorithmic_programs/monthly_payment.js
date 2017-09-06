@@ -1,6 +1,6 @@
-var p=+process.argv[2];
-var y=+process.argv[3];
-var r=+process.argv[4];
+var p=process.argv[2];
+var y=process.argv[3];
+var r=process.argv[4];
 //assigning values to variables
 var r2=r/(12*100);
 var n=12*y;

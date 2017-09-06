@@ -4,15 +4,15 @@ arr.push(process.argv[2]);
 arr.push(process.argv[3]);
 arr.push(process.argv[4]);
 arr.push(process.argv[5]);
-
+var val=process.argv[6];
 var time=new Array();
-//arr=[09,43,78,1,98,37,56];
+// arr=[09,43,78,1,98,37,56];
 console.log("Insertion sort: ");
 insertionsort(arr);
 console.log("Bubble sort: ");
 bubblesort(arr);
 console.log("Binary Search: ");
-binarySearch(arr,"aman");
+binarySearch(arr,val);
 bubblesort(time);
 //bubblesort function
 function bubblesort(data) {

@@ -1,1 +1,1 @@
-Account name: ABC Account: 80 {"name":"Y","shareNumber":5,"sharePrice":8,"value":40} {"name":"X","shareNumber":3,"sharePrice":13,"value":40} 
+Account name: ABC Account: 62 P Number of shares: 9 Share Price: 7 Value: 65 created : Wed Sep 06 2017 13:11:58 GMT+0530 (IST)sell : Wed Sep 06 2017 13:11:58 GMT+0530 (IST)

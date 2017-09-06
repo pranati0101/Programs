@@ -9,7 +9,7 @@ function stock(name,sn,sp){
 var list=[];
 var sum=0;
 //driver function
-function cal(){
+function calculateStock(){
   var n=document.getElementById("n").value;
   while(n>0){
     var name=prompt("Enter the name of stock.");

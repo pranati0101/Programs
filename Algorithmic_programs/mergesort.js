@@ -1,9 +1,9 @@
 //input from cmd line
 arr=new Array();
-arr.push(process.argv[2]);
-arr.push(process.argv[3]);
-arr.push(process.argv[4]);
-arr.push(process.argv[5]);
+arr.push(parseInt(process.argv[2]));
+arr.push(parseInt(process.argv[3]));
+arr.push(parseInt(process.argv[4]));
+arr.push(parseInt(process.argv[5]));
 // arr = ["ram","shyam","aman","lakshman"];
 console.log("Sorted list is " + mergesort(arr));
 
