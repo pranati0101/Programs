@@ -80,14 +80,14 @@
       });
     }
 
-  function updateScroll(){
+    function updateScroll(){
 
-    var element=document.getElementById("message-container");
-      $("ol").scrollTop(78);
-      console.log($("ol").scrollTop());
-      console.log(element.scrollHeight);
+      var element=document.getElementById("message-container");
+        element.scrollTop=element.scrollHeight;
+        console.log(element.scrollTop);
+        console.log(element.scrollHeight);
 
-  }
+    }
 
   function logout(event) {
     var rs = $.ajax({
