@@ -12,8 +12,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="datastructure.js"></script>
   <script type="text/javascript" src="file.js"></script>
-    <script type="text/javascript" src="file2.js"></script>
+    <!-- <script type="text/javascript" src="file2.js"></script> -->
   <script src="addressBook.js"></script>
+  <style media="screen">
+    #mymodal{
+      position:absolute;
+    }
+  </style>
 </head>
 <!--body division  -->
 
@@ -28,7 +33,7 @@
         <input id="files" style="visibility:hidden;" type="file" onchange="openFile(event)">
       </div>
       <button type="button" class="btn btn-md" name="new" onclick="new1()">New</button>
-      <button type="button" class="btn btn-md" id="SAVE">Save</button>
+      <!-- <button type="button" class="btn btn-md" id="SAVE">Save</button> -->
       <!--Modal dialog box will appear when save as button is clicked asking file path  -->
       <button type="button" class="btn btn-md" name="saveas" data-toggle="modal" data-target="#saveas">SaveAs</button>
     </div>

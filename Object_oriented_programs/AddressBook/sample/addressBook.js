@@ -1,5 +1,3 @@
-//var book used to assign instantiation of hash map
-var book;
 //var to store updated values
 var updatedobj;
 var temp;
@@ -75,9 +73,9 @@ function createDialog(oldfname, oldlname, oldnum, oldadd, oldcity, oldstate, old
   var node = document.createElement('div');
   node.className = 'form-group';
   node.innerHTML = ' <label for="mfirstname">First Name</label>' +
-    '<input type="text" class="form-control" id="mfirstname" disabled=true placeholder=' + oldfname + '>' +
+    '<input type="text" class="form-control" id="mfirstname"  placeholder=' + oldfname + '>' +
     '<label for="mlastname">Last Name</label>' +
-    '<input type="text" class="form-control" id="mlastname" disabled=true placeholder=' + oldlname + '>' +
+    '<input type="text" class="form-control" id="mlastname"  placeholder=' + oldlname + '>' +
     ' <label for="mnumber">Enter nummber</label>' +
     '<input type="text" class="form-control" id="mnumber" placeholder=' + oldnum + '>' +
     '<label for="maddress">Enter Address:</label>' +
@@ -85,7 +83,7 @@ function createDialog(oldfname, oldlname, oldnum, oldadd, oldcity, oldstate, old
     '<label for="mcity">Enter City:</label>' +
     '<input type="text" class="form-control" id="mcity" placeholder=' + oldcity + '>' +
     '<label for="mstate">Enter State:</label>' +
-    '<input type="text" class="form-control" id="mstate"placeholder=' + oldstate + '>' +
+    '<input type="text" class="form-control" id="mstate" placeholder=' + oldstate + '>' +
     '<label for="mpincode">Enter Pin Code:</label>' +
     '<input type="text" class="form-control" id="mpincode"placeholder=' + oldpin + '>';
   body1.appendChild(node);
@@ -102,7 +100,6 @@ function createDialog(oldfname, oldlname, oldnum, oldadd, oldcity, oldstate, old
   // Show modal dialog box
   $('#mymodal').modal('toggle');
   $('#mymodal').modal('show');
-
   $("#editbtn").click(function() {
     var fname = document.getElementById("mfirstname").placeholder;
     var lname = document.getElementById("mlastname").placeholder;
@@ -111,11 +108,19 @@ function createDialog(oldfname, oldlname, oldnum, oldadd, oldcity, oldstate, old
     var city = document.getElementById("mcity").value;
     var state = document.getElementById("mstate").value;
     var pin = document.getElementById("mpincode").value;
+    console.log(number);
     updatedobj = new person(fname, lname, number, address, city, state, pin);
     //if edition is done
     book.insert(updatedobj);
     book.remove(temp);
     console.log("update ended");
+    // var ele = document.getElementsByClassName('modal-backdrop');
+    // console.log(ele);
+    delete document.getElementById("mymodal");//
+    delete document.getElementsByClassName("modal-backdrop");//.remove();
+    // document.removeChild(document.getElementsByClassName('modal-backdrop'))
+    // ele.removeChild();
+    return;
   });
 
 }
@@ -129,7 +134,10 @@ function update() {
   console.log("entered");
   temp = book.search(val);
   console.log(temp);
-  createDialog(temp.firstname, temp.lastname, temp.number, temp.address, temp.city, temp.state, temp.pin);
+  cd=createDialog(temp.firstname, temp.lastname, temp.number, temp.address,
+    temp.city, temp.state, temp.pin);
+        console.log("after dialog created");
+
 }
 //function to add table
 function addTable(row) {

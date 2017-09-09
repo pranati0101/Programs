@@ -1,3 +1,6 @@
+//var book used to assign instantiation of hash map
+var book;
+
 //person object to be stored in address book
 function person(firstname, lastname, number, address, city, state, pin) {
   this.firstname = firstname;
