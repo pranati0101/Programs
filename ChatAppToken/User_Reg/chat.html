@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Live Chat</title>
+
+    <link rel="stylesheet" href="chat.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://localhost:8081/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="chat.js"></script>
+</head>
+<body>
+<div id="menu"class="menu">
+  <div class="back"><i class="fa fa-chevron-left"></i> <img src="self.png" draggable="false"/></div>
+  <div id="name" class="name"></div>
+  <div class="last">Online</div>
+  <div id="logout" align="right">
+    <input type="button" class="logoutbutton" value="Log Out" />
+  </div>
+</div>
+<ol id="message-container"class="chat"></ol>
+<div id="bottom">
+  <input class="textarea" id="message" type="text" placeholder="Type here!"></input>
+  <input type="button"  id="sendmessage" class="sendbutton" value="send"></input>
+
+</div>
+
+</body>
+</html>
