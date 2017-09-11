@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>User Login</title>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://localhost:8081/socket.io/socket.io.js"></script>
+<script src="form.js"></script>
+<link rel="stylesheet" type="text/css" href="login.css" />
+</head>
+<body>
+<div class="container">
+	<section id="content">
+  <form id="form1">
+			<h1>Login Form</h1>
+			<div>
+				<input id="userid" type="text" placeholder="Username" required=""  />
+			</div>
+			<div>
+				<input id="password" type="password" placeholder="Password" required="" />
+			</div>
+			<div>
+				<input type="submit" id="login" value="Log in" />
+				<a id="delete" >Delete</a>
+				<a id="update">Update</a>
+			</div>
+		</form>
+		<div class="button">
+			<a id="new">New User? Sign up!</a>
+		</div>
+</div>
+</body>
+</html>
