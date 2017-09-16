@@ -22,6 +22,18 @@
         }
 
        //socket events
+
+       socket.on('available',function(data){
+         var element=document.getElementById('userlist');
+         for (i in data){
+           if(data[i]!=user){
+            element.innerHTML+='<li><p class="userlist">'+data[i]+'</p></li>';
+             console.log(data[i]);
+           }
+         }
+
+       });
+
         socket.on('welcum_notice', function(data) {
           document.getElementById('message-container').innerHTML += "<li class='other'>" +
             "<div class='msg'><p><b>" + data + "</b> just joined the conversation</p></div></li>";
@@ -80,6 +92,10 @@
       });
     }
 
+    // function showusers(){
+    //   console.log("in show users");
+    //   $('html').toggleClass('show-me');
+    // }
     function updateScroll(){
 
       var element=document.getElementById("message-container");
@@ -127,7 +143,7 @@
   $(document).ready(function(){
     if((localStorage.getItem('user')=='null' || localStorage.getItem('user')=='undefined' ||
     localStorage.getItem('user')=='' || localStorage.getItem('user')==undefined  )){
-      alert("Not Logged in !")
+      alert("Not Logged in !");
         window.location.href='/?#';
     }
     else{

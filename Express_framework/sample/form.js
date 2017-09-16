@@ -67,10 +67,10 @@
         table.rows[0].cells[3].innerHTML="<b>Pin Code</b>";
 
       for(i=1;i<=data.length;i++){
-          table.rows[i].cells[0].innerHTML=(data[i-1][0].firstname);
-          table.rows[i].cells[1].innerHTML=(data[i-1][0].lastname);
-          table.rows[i].cells[2].innerHTML=(data[i-1][0].number);
-          table.rows[i].cells[3].innerHTML=(data[i-1][0].pin);
+          table.rows[i].cells[0].innerHTML=(data[i-1].firstname);
+          table.rows[i].cells[1].innerHTML=(data[i-1].lastname);
+          table.rows[i].cells[2].innerHTML=(data[i-1].number);
+          table.rows[i].cells[3].innerHTML=(data[i-1].pin);
       }
     })
   }

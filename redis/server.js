@@ -29,9 +29,10 @@ var redisClient=redis.createClient();
 redisClient.auth('1234');
 
 var secretKey = uuid.v4();
+console.log(secretKey);
 var token;
 
-app.use("/", express.static('./User_Reg'));
+app.use(express.static('./User_Reg'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -74,6 +75,14 @@ promise.then(function(db) {
 io.on('connection', function(socket) {
   console.log("socket connected!");
   socket.emit('loggedin');
+
+  redisClient.keys('*',function(err,info){
+    if(err) console.log(err);
+    console.log("redis data   "+(info));
+    io.emit('available',info);
+  });
+
+
   socket.on('prev_msgs', function(data) {
     User.find({name: data}, function(err, info) {
       if (err) console.log(err);
@@ -87,6 +96,8 @@ io.on('connection', function(socket) {
   socket.on('welcum', function(data) {
     socket.broadcast.emit('welcum_notice', data);
   });
+
+
 
   socket.on('logout', function(data) {
     socket.broadcast.emit('logout_notice', data);
@@ -107,22 +118,26 @@ io.on('connection', function(socket) {
 
 // Logout endpoint
 app.post('/logout', function(req, res) {
-  token=redisClient.hget('tokenList',req.body.user);
-  if (token == null) {
-    res.json({
-      status: "alreadyloggedout"
-    });
-    console.log("token null");
-  } else {
-    console.log("token not null");
+  redisClient.get(req.body.user,function(err,info){
+    if(err) console.log(err);
+    if(info==null){
+      res.json({
+        status: "alreadyloggedout"
+      });
+      console.log("token null");
+    }
+    else {
+      console.log("token not null");
+       var cursor = User.findOneAndUpdate({name: req.body.user},
+        {$set: {lastLogin: Date.now}});
+        redisClient.del(req.body.user,function(err){
+          console.log(err);
+        });
+      res.json({status: "success"});
+      console.log("logout");
+    }
+  });
 
-    var cursor = User.findOneAndUpdate({name: req.body.user},
-      {$set: {lastLogin: Date.now}});
-    res.json({status: "success"});
-    redisClient.hdel('tokenList',req.body.user)
-  }
-  redisClient.quit();
-  console.log("logout");
 });
 
 
@@ -145,29 +160,23 @@ app.post('/newUser', function(req, res) {
 
 //chk user is already logged in or not
 app.post('/chklogin', function(req, res) {
-
-console.log("chkin   redis  "+redisClient.hexists('tokenList',req.body.userid));
-
-    // if(redisClient.hexists('tokenList',req.body.userid)==true){
-
-      redisClient.hget('tokenList',req.body.userid, function(err, token) {
+  redisClient.exists(req.body.userid,function(err,result){
+    console.log("result in chklogin  "+result+err);
+    if(result){
+      redisClient.get(req.body.userid, function(err, token) {
           console.log(token);
           if(token){
-            // str = token;
-            // str = str.replace(/^'(.*)'$/, '$1');
-            var decoded = jwt.verify(token, secretKey, function(err, info) {
-              if (err) console.log(err);
-              if(info)
                 res.json({status: "alreadylogged"});
-            });
           }
-          else {
-             //user is not logged in
-             console.log("not logged in");
-             res.redirect('/login?userid=' + req.body.userid + '&password=' + req.body.password);
-           }
       });
+    }
+    else {
+       //user is not logged in
+       console.log("not logged in");
+       res.redirect('/login?userid=' + req.body.userid + '&password=' + req.body.password);
+     }
   });
+});
 
 app.get('/login', function(req, res) {
   console.log("in log in api");
@@ -184,7 +193,7 @@ app.get('/login', function(req, res) {
           password: req.query.password,
           expiresIn: 60 * 60
         }, secretKey);
-        redisClient.hmset('tokenList',req.query.userid,token);
+        redisClient.set(req.query.userid,token);
         res.json({"status": "newlogin"});
       } else {
         res.json({"status": "invalid"});
@@ -241,9 +250,9 @@ http.listen(8081, function() {
   console.log("server running ");
   redisClient.on('connect',function(){
     console.log("connected to redis!!");
-    console.log(redisClient.hgetall('tokenList',function(err,obj){
-      console.log(err,obj);
-    }));
+
 
   });
 });
+
+module.exports=app;

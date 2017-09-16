@@ -66,12 +66,11 @@ io.on('connection', function(socket) {
     User.find({
       name: data
     }, function(err, info) {
-      console.log(err, info);
+      if(err) console.log(err);
     })
     // Message.find({time:{ '$gt':new Date(info.lastLogin)}},function(err,info){
     Message.find({}, function(err, info) {
       if (err) throw err;
-      console.log(info);
       socket.emit('display_prev', info);
     });
   });
@@ -134,37 +133,36 @@ app.post('/newUser', function(req, res) {
   });
 });
 
-//chk user is already logged in or not
-app.post('/chklogin',function(req,res){
-  console.log("req.body:    "+req.body);
-  if(req.session.user!=req.body.userid){
-    //user is not logged in
-    console.log("not logged in");
-    res.redirect('/login'+'?userid='+req.body.userid+'&password='+req.body.password);
-    // res.redirect('/login');
-  }
-else{
-  res.json({session:true,
-  status:"alreadylogged"});
-}
-});
 
-app.get('/login', function(req, res) {
+//chk user is already logged in or not
+// app.post('/chklogin',function(req,res){
+//   console.log("req.body:    "+req.body.userid);
+//   console.log("req.session:    "+JSON.stringify(req.session));
+//   if(req.session.user){
+//     res.json({session:true,
+//     status:"alreadylogged"});
+//   }
+// else{
+//   console.log("not logged in");
+//   res.redirect('/login'+'?userid='+req.body.userid+'&password='+req.body.password);
+// }
+// });
+
+app.post('/login', function(req, res) {
   console.log("in log in api");
-console.log(req.query);
     var cursor = User.findOne({
-        name: req.query.userid,
-        password: req.query.password
+        name: req.body.userid,
+        password: req.body.password
       },
       function(err, info) {
         if (err) console.log(err);
 
         console.log(info);
         if (info) {
-          req.session.user = req.query.userid;
+          req.session.user = req.body.userid;
           req.session.admin = true;
           req.session.cookie={expires:60*60};
-          console.log("req.session.user   "+req.session.user);
+          console.log("req.session in login   "+(req.session));
           res.json({session:req.session,
           status:"newlogin"});
         }

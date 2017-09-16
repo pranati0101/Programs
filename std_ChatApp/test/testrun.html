@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>User Login</title>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://localhost:8081/socket.io/socket.io.js"></script>
+<script src="form.js"></script>
+<link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+</head>
+<body>
+
+	<style type="text/css">
+  #content{
+    display: none;
+  }
+</style>
+
+	<div id="mocha"></div>
+	<script src="./node_modules/mocha/mocha.js"></script>
+	<script src="./node_modules/chai/chai.js"></script>
+	<script>
+	    mocha.ui('bdd');
+	    mocha.reporter('html');
+	    var expect = chai.expect;
+	</script>
+	<script src="./tset2.js"></script>
+	<script>
+	    mocha.run();
+	</script>
+
+
+<div class="container">
+	<section id="content">
+  <form id="form1">
+			<h1>Login Form</h1>
+			<div>
+				<input id="userid" type="text" placeholder="Username" required=""  />
+			</div>
+			<div>
+				<input id="password" type="password" placeholder="Password" required="" />
+			</div>
+			<div>
+				<input type="submit" id="login" value="Log in" />
+				<a id="delete" >Delete</a>
+				<a id="update">Update</a>
+			</div>
+		</form>
+		<div class="button">
+			<a id="new">New User? Sign up!</a>
+		</div>
+</div>
+<a id="updatedialog" href="#openModal"></a>
+<div id="openModal" class="modalDialog">
+	<div>
+		<a href="/?#" title="Close" class="close">X</a>
+		<!-- <h2>Update Password</h2> -->
+		<p>Enter Password:-</p>
+		<input type="password" id="newpassword">
+		<input type="button" id="passbtn" value="Submit">
+	</div>
+</div>
+<script type="text/javascript">
+$('#passbtn').click(function(){
+	pass=document.getElementById('newpassword').value;
+	var result = $.ajax({
+		url: '/update',
+		type: 'POST',
+		dataType: "JSON",
+		data: {
+			"userid": form1.userid.value,
+			"password":pass,
+		}
+	}).done(function(result) {
+		window.location.href='/?#';
+		console.log(result.data);
+		if (result.data == false) {
+			alert("Invalid userid or password!");
+		} else if (result.data == true) {
+			alert("User updated!");
+		}
+	});
+})
+</script>
+</body>
+</html>

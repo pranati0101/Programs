@@ -97,6 +97,7 @@
       type: 'GET'
     }).done(function(result) {
       localStorage.setItem('user',null);
+      localStorage.setItem('session',null);
       localStorage.setItem('result',null);
       socket.emit('logout',user);
       console.log("loggedout");

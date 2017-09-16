@@ -48,7 +48,7 @@
       alert("Invalid Username !");
     } else {
       var result = $.ajax({
-        url: '/chklogin',
+        url: '/login',
         type: 'POST',
         dataType: "JSON",
         data: {
@@ -134,4 +134,15 @@
   }
 
   $(document).ready(init);
+
+  $(document).ready(function(){
+    if((localStorage.getItem('user')!='null' && localStorage.getItem('user')!=null &&
+    localStorage.getItem('user')!='')){
+        window.location.href='/chat.html';
+    }
+    else{
+      init();
+    }
+  });
+
 })();

@@ -11,6 +11,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use("/", express.static('./sample'));
 
+app.get('/',function(req,res){
+
+})
+
 //api for saving file
 app.post('/saving', function(req, res) {
   console.log("saving");
@@ -28,7 +32,7 @@ app.post('/saving', function(req, res) {
     if (!(data instanceof Array)) {
       data = [];
     }
-    data.push([req.body]);
+    data.push(req.body);
 
     fs.writeFile(__dirname + "/filename.json", JSON.stringify(data), "utf8", function(err, data) {
       if (err) {
@@ -113,7 +117,6 @@ app.post('/delete', function(req, res) {
     if (err) console.log(err);
     if (data == null) {
       alert("no contacts!");
-
     }
     try {
       data = JSON.parse(data);
@@ -123,9 +126,9 @@ app.post('/delete', function(req, res) {
     console.log("data "+data);
     for (index in data) {
       // if(data[ind][0]!=null && data[ind][0] !=undefined){
-        if(data[index][0]){
-          console.log(data[index][0].firstname);
-        if (data[index][0].firstname == req.body.firstname) {
+        if(data[index]){
+          console.log(data[index].firstname);
+        if (data[index].firstname == req.body.firstname) {
           data.splice(index, 1);
           console.log("successfully deleted");
           break;
@@ -136,6 +139,7 @@ app.post('/delete', function(req, res) {
     fs.writeFile("filename.json", JSON.stringify(data), "utf8", function(err, data) {
       if (err) throw err;
       console.log("successfully updated");
+      res.json({data:true});
     })
   });
 });
