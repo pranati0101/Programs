@@ -1,0 +1,26 @@
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Live Chat
+    script(src="http://code.jquery.com/jquery-1.9.1.min.js")
+    script(src="http://localhost:8081/socket.io/socket.io.js")
+    link(rel="stylesheet" type="text/css" href="./chat.css")
+    script(type="text/javascript" src="../chat.js")
+    //- /*script(type="text/javascript" src="../keypress.js")*/
+  body
+    div(id="menu" class="menu")
+      div(class="back")
+          img(src="self.png" draggable="false")
+      div(id="name" class="name")
+      div(class="last") Online
+      div(id="logout" align="right")
+        input(type="button" class="logoutbutton" value="Log Out")
+    ol(id="message-container" class="chat")
+    div(id="bottom")
+      input(class="textarea" id="message" type="text" placeholder="Type here!" onkeypress="detectEnter(event)")
+      input(type="button"  id="sendmessage" class="sendbutton" value="send")
+    div(id="left-panel")
+      header(class="clearfix")
+        p Available
+        ul(class="userlist" id="userlist")
+    script(type="text/javascript" src="../keypress.js")

@@ -1,0 +1,35 @@
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    title User Login
+    script(src="http://code.jquery.com/jquery-1.9.1.min.js")
+    script(src="http://localhost:8081/socket.io/socket.io.js")
+    script(src="../form.js")
+    //- /*script(src="../editfunction.js")*/
+    link(rel="stylesheet" type="text/css" href="./login.css")
+  body
+    div(class="container")
+      section(id="content")
+        form(id="form1")
+          h1
+            p Login Form
+          div
+            input(id="userid" type="text" placeholder="Username" required="")
+          div
+            input(id="password" type="password" placeholder="Password" required="")
+          div
+            input(type="submit" id="login" value="Log in")
+            a(id="delete")
+              p Delete
+            a(id="update")
+              p Update
+        div(class="button")
+          a(id="new") New User? Sign up!
+      a(id="updatedialog" href="#openModal")
+      div(id="openModal" class="modalDialog")
+          div
+            a(href="/?#" title="Close" class="close") X
+            p Enter Password:
+            input(id="password" type="password" placeholder="Password" required="")
+            input(type="submit" id="passbtn" value="Submit")
+      script(src="../editfunction.js")

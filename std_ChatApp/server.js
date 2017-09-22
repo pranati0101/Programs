@@ -78,7 +78,7 @@ io.on('connection', function(socket) {
 });
 
 //listening at port 8001
-http.listen(8081, function() {
+http.listen(8000, function() {
   console.log("server running ");
 });
 /*sexporting app*/
