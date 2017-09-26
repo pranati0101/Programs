@@ -1,0 +1,31 @@
+//- !DOCTYPE
+html
+  head
+  meta(charset="UTF-8")
+  title Login Form
+  link(rel="stylesheet" href="login.css")
+  body
+    div(id="wrapper")
+      div(class="mail-text")
+        p Log in using registered email id-
+      div(class="form1")
+        div(class="lock")
+        form(action="" method="get" name="login")
+          input(name="email" type="text" value="Enter your email address...",
+          size="70" onClick="border: 1px solid #30a8da;" id="mail")
+          input(name="password" type="password" value="Enter a password...",
+          size="70" onClick="border: 1px solid #30a8da;" id="password")
+      a(class="login-acc" value="Login" href="/loginLocal") Login
+      div(class="clr")
+      hr
+      div(class="login-options")
+        Or choose on of the following sign up methods.
+      //- <a class="twitter" href="#">Twitter</a> -
+      a(class="facebook" href="#")
+      a(class="google" method="get" href="/auth/google")
+      div(class="clr")
+    div(class="footer")
+      a(href="" target="_blank")
+        p Forgot Password?
+      a(href="/signup" method="get")
+        p Sign-up
