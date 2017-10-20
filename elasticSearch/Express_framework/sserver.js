@@ -34,6 +34,7 @@ function initIndex() {
     return esClient.indices.create({
         index: indexName
     });
+    console.log("creating new index");
 }
 
 function addDocument(document) {
@@ -44,7 +45,7 @@ function addDocument(document) {
     });
 }
 
-app.get('/index',function(req,res){
+app.get('/',function(req,res){
 //   var flag=indexExists();
 //   console.log("flag: "+flag);
 //   if(flag==1){
@@ -54,9 +55,10 @@ app.get('/index',function(req,res){
 // indexExists(function(err,res){
 //   if(err) console.log(err);
 //   console.log(res);
-  esClient.indices.delete({index: indexName});
+  // esClient.indices.delete({index: indexName});
 // })
-
+esClient.indices.delete({index: indexName});
+console.log("init");
   initIndex();
   fs.readFile('filename.json',function(err,data){
     if(err) console.log(err);
@@ -76,7 +78,7 @@ app.get('/search',function(req,res){
           query:req.query.text,
           fields:['firstname','lastname', 'number', 'pin'],
           minimum_should_match: 1,
-          fuzziness:1
+          fuzziness:3
       }
       // match_all:{}
     }
@@ -164,6 +166,15 @@ app.post('/saving', function(req, res) {
 
 //for displaying present CONTACTS
 app.get('/opening', function(req, res) {
+esClient.indices.delete({index: indexName});
+  initIndex();
+  fs.readFile('filename.json',function(err,data){
+    if(err) console.log(err);
+    data=JSON.parse(data);
+    data.forEach(function(doc){
+        addDocument(doc);
+    });
+  });
 
   console.log('in opened api ');
 

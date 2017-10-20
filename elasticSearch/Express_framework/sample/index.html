@@ -1,40 +1,18 @@
-<!-- <html>
-<head>
-  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-</head>
-<body>
-<form  id="form1">
-FirstName:<input type="text" id="fname"><br>
-LastName:<input type="text" id="lname"><br>
-Number:<input type="text" id="number"><br>
-Pin:<input type="text" id="pin"><br>
-<button type="button" id="SAVE">SAVE</button><br>
-<button type="button" id="OPEN">SHOW</button>
-<button type="button" id="REMOVE">DELETE</button>
-<button type="button" id="EDIT">EDIT</button>
-</form>
-<div id="space"></div>
-<div id="search"class="">
-  <input type="text" id="stext"></input><br>
-  <button id="search" name="abc">search</button>
-</div>
-</body>
-<script src="form.js"></script>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <!--head tag with bootstrap cdn link  -->
-
 <head>
   <title>Address Phone Book</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="form.js"></script>
+  <script type="text/javascript" src="autocomplete.js"></script>
+  <script type="text/javascript" src="add.js"></script>
   <style media="screen">
     #mymodal{
       position:absolute;
@@ -48,7 +26,7 @@ Pin:<input type="text" id="pin"><br>
   <!-- creating panel with file menu on header select list displaying person in body and other options in footer -->
   <div class="panel panel-default">
     <div class="panel-heading">
-      <input type="text" id="stext"></input>
+      <input type="text" id="stext" autocomplete="off"></input>
       <button type="button" class="btn btn-md" id="SEARCH">Search</button>
     </div>
     <!-- using select list in panel body for showing contacts or persons added to the list -->
@@ -93,39 +71,7 @@ Pin:<input type="text" id="pin"><br>
       </div>
     </div>
   </div>
-  <div id="space">
-
-  </div>
-  <div id="modaldialog">
-
-  </div>
-<script type="text/javascript">
-function addinbook(){
-  var firstname = document.getElementById("firstname").value;
-  var lastname = document.getElementById("lastname").value;
-  var number = document.getElementById("number").value;
-  var pin = document.getElementById("pincode").value;
-  // console.log("in push book: "+JSON.stringify(book));
-  $.ajax({
-    url: '/saving',
-    type: 'POST',
-    dataType: "JSON",
-    data: {
-      "firstname": firstname,
-      "lastname": lastname,
-      "number": number,
-      "pin": pin,
-    }
-    // sucess: function(data) {
-    //   alert("sucess");
-    // }
-  }).done(function(res){
-    var list = document.getElementById("selectlist");
-    var opt = document.createElement("option");
-    opt.text = firstname;
-    list.add(opt);
-  })
-}
-
-</script>
+  <div id="space"></div>
+  <div id="modaldialog"></div>
 </body>
+</html>
